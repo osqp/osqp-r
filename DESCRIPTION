@@ -1,0 +1,36 @@
+Package: rosqp
+Type: Package
+Title: Quadratic Programming Solver using the 'OSQP' Library
+Version: 0.1.0
+Date: 2018-01-19
+Authors@R: c(person("Eric", "Anderson", email="anderic1@gmx.com", role=c("aut", "cre")),
+    person("Bartolomeo", "Stellato", role = c("ctb", "cph"), comment="OSQP"),
+    person("Goran", "Banjac", role = c("ctb", "cph"), comment="OSQP"),
+    person("Paul", "Goulart", role = c("ctb", "cph"), comment="OSQP"),
+    person("Stephen", "Boyd", role = c("ctb", "cph"), comment="OSQP"),
+    person("Patrick R.", "Amestoy", role = c("ctb", "cph"), comment="SuiteSparse AMD"),
+    person("Iain S.", "Duff", role = c("ctb", "cph"), comment="SuiteSparse AMD"), 
+    person("Timothy A.", "Davis", role = c("ctb", "cph"), comment=c("SuiteSparse LDL", "SuiteSparse AMD")),
+    person("John K.", "Reid", role = c("ctb", "cph"), comment=c("SuiteSparse AMD")))
+Copyright: file COPYRIGHT
+Description: Provides bindings to the 'OSQP' solver, which can solve sparse convex quadratic programming problems with optional equality and inequality constraints.
+License: Apache License 2.0
+Imports: Rcpp (>= 0.12.14), methods, Matrix, R6
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
+Collate: 'RcppExports.R' 'rosqp-package.R' 'solve.R' 'osqp.R'
+        'params.R'
+NeedsCompilation: yes
+Packaged: 2018-02-06 20:32:49 UTC; hh
+Author: Eric Anderson [aut, cre],
+  Bartolomeo Stellato [ctb, cph] (OSQP),
+  Goran Banjac [ctb, cph] (OSQP),
+  Paul Goulart [ctb, cph] (OSQP),
+  Stephen Boyd [ctb, cph] (OSQP),
+  Patrick R. Amestoy [ctb, cph] (SuiteSparse AMD),
+  Iain S. Duff [ctb, cph] (SuiteSparse AMD),
+  Timothy A. Davis [ctb, cph] (SuiteSparse LDL, SuiteSparse AMD),
+  John K. Reid [ctb, cph] (SuiteSparse AMD)
+Maintainer: Eric Anderson <anderic1@gmx.com>
+Repository: CRAN
+Date/Publication: 2018-02-07 13:10:50 UTC
