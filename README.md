@@ -4,9 +4,11 @@ Provides R-bindings to the [OSQP-solver](http://osqp.readthedocs.io/)
 
 OSQP is a sparse Quadratic Programming Solver suitable for large problems. 
 It solves problems of the form:
-$$ argmin(x) 0.5 x'P x + q'x $$
+```
+minimize        0.5 x' P x + q' x
 
-$$s.t.:  l_i <= (Ax)_i <= u_i$$
+subject to      l <= A x <= u
+```
 
 with P Positive semidefinite 
 
