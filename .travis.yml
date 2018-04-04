@@ -1,11 +1,12 @@
 language: r
 r:
-  - oldrel
   - release
-  - devel
+  # Test on old / devel versions ?
+  # - oldrel
+  # - devel
   
 cache: packages
 
 os:
-  - linux
+  # - linux
   - osx
