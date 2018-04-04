@@ -10,3 +10,8 @@ cache: packages
 os:
   # - linux
   - osx
+
+#fussy building for CRAN compatibility
+warnings_are_errors: true
+r_check_args: --as-cran
+disable_homebrew: true 

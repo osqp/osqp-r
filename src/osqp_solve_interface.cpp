@@ -1,6 +1,6 @@
 
 
-#include "osqp/include/osqp.h"
+#include "osqp.h"
 #include <Rcpp.h>
 #include <memory>
 #include <algorithm>
@@ -18,38 +18,38 @@ S4 toDgCMat(csc*);
 
 
 
-  
-  
+
+
 // [[Rcpp::export]]
 SEXP rosqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars)
 {
-  
-  
-  
+
+
+
   IntegerVector dimP = P.slot("Dim");
-  
+
   IntegerVector dimA = A.slot("Dim");
   int n = dimP[0];
   int m = dimA[0];
   if (n != dimP[1] || n != dimA[1]) stop("bug");
   std::vector<c_int> A_i, A_p, P_i, P_p;
   std::vector<c_float> A_x, P_x, qvec(q.size()), lvec(l.size()), uvec(u.size());
-  
+
   extractMatrixData(P, P_i, P_p, P_x);
   extractMatrixData(A, A_i, A_p, A_x);
-  
+
   std::copy(q.begin(), q.end(), qvec.begin());
   std::copy(l.begin(), l.end(), lvec.begin());
   std::copy(u.begin(), u.end(), uvec.begin());
-  
+
   std::unique_ptr<OSQPSettings> settings (new OSQPSettings);
   set_default_settings(settings.get());
-  
+
   if (pars.size())
     translateSettings(settings.get(), pars);
-  
+
   std::unique_ptr<OSQPData> data (new OSQPData);
-  
+
   data->n = static_cast<c_int>(n);
   data->m = static_cast<c_int>(m);
   data->P = csc_matrix(data->n, data->n, P_x.size(), P_x.data(), P_i.data(), P_p.data());
@@ -57,16 +57,16 @@ SEXP rosqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericV
   data->A = csc_matrix(data->m, data->n, A_x.size(), A_x.data(), A_i.data(), A_p.data());
   data->l = lvec.data();
   data->u = uvec.data();
-  
-  
+
+
   Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> work(osqp_setup(data.get(), settings.get()));
-  
-  
+
+
   return work;
 }
-  
-  
-  
+
+
+
 
 // [[Rcpp::export]]
 List rosqpSolve(SEXP workPtr)
@@ -75,9 +75,9 @@ List rosqpSolve(SEXP workPtr)
   c_int n = work->data->n;
   c_int m = work->data->m;
   c_int res = osqp_solve(work);
-  
-  
-  
+
+
+
   std::string status = work->info->status;
   List info =  List::create(_("iter") = work->info->iter,
                       _("status") = status,
@@ -92,7 +92,7 @@ List rosqpSolve(SEXP workPtr)
                       _("run_time") = work->info->run_time,
                       _("rho_estimate") = work->info->rho_estimate,
                       _("rho_updates") = work->info->rho_updates);
-  
+
   List resl;
   if (res != OSQP_UNSOLVED)
   {
@@ -112,7 +112,7 @@ List rosqpSolve(SEXP workPtr)
                         _("prim_inf_cert") = NA_REAL,
                         _("dual_inf_cert") = NA_REAL,
                         _("info") = info);
-    
+
   return resl;
 }
 
@@ -125,9 +125,9 @@ List rosqpGetParams(SEXP workPtr)
     linsys = IntegerVector::create(_("SUITESPARSE_LDL_SOLVER") = work->settings->linsys_solver);
   else if (work->settings->linsys_solver == MKL_PARDISO_SOLVER)
     linsys = IntegerVector::create(_("MKL_PARDISO_SOLVER") = work->settings->linsys_solver);
-  else 
+  else
     linsys = IntegerVector::create(_("UNKNOWN_SOLVER") = work->settings->linsys_solver);
-  
+
   List res = List::create(_("rho") = work->settings->rho,
                           _("sigma") = work->settings->sigma,
                           _("max_iter") = work->settings->max_iter,
@@ -148,9 +148,9 @@ List rosqpGetParams(SEXP workPtr)
                           _("adaptive_rho") = work->settings->adaptive_rho,
                           _("adaptive_rho_interval") = work->settings->adaptive_rho_interval,
                           _("adaptive_rho_tolerance") = work->settings->adaptive_rho_tolerance);
-  
+
   res.push_back(work->settings->adaptive_rho_fraction, "adaptive_rho_fraction");
-  
+
   return res;
 }
 
@@ -162,15 +162,15 @@ IntegerVector rosqpGetDims(SEXP workPtr)
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
   auto res = IntegerVector::create(_("n") = work->data->n,
                                    _("m") = work->data->m);
-  
-  
+
+
   return res;
 }
 // [[Rcpp::export]]
 void rosqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
-  
+
   if (q_new.isNotNull()) {
     osqp_update_lin_cost(work, as<NumericVector>(q_new.get()).begin());
   }
@@ -187,28 +187,28 @@ void extractMatrixData(const S4& mat, std::vector<c_int>& iout, std::vector<c_in
   IntegerVector i = mat.slot("i");
   IntegerVector p = mat.slot("p");
   NumericVector x = mat.slot("x");
-  
+
   iout.resize(i.size());
   pout.resize(p.size());
   xout.resize(x.size());
   std::copy(i.begin(), i.end(), iout.begin());
   std::copy(p.begin(), p.end(), pout.begin());
   std::copy(x.begin(), x.end(), xout.begin());
-  
+
   return;
 }
 
 
 void translateSettings(OSQPSettings* settings, const List& pars)
 {
-  
+
   CharacterVector nms(pars.names());
   for (int i = 0; i < pars.size(); i++)
   {
     if (Rf_isNull(nms[i]))
       continue;
     auto nm = as<std::string>(nms[i]);
-    
+
     if (nm == "rho")
       settings->rho = as<c_float>(pars[i]);
     else if (nm == "sigma")
@@ -229,8 +229,8 @@ void translateSettings(OSQPSettings* settings, const List& pars)
       settings->adaptive_rho_fraction = as<c_float>(pars[i]);
     else if (nm == "adaptive_rho_tolerance")
       settings->adaptive_rho_tolerance = as<c_float>(pars[i]);
-    
-    
+
+
     else if (nm == "linsys_solver")
       settings->linsys_solver = (linsys_solver_type)as<c_int>(pars[i]);
     else if (nm == "polish_refine_iter")
@@ -245,8 +245,8 @@ void translateSettings(OSQPSettings* settings, const List& pars)
       settings->adaptive_rho = as<c_int>(pars[i]);
     else if (nm == "adaptive_rho_interval")
       settings->adaptive_rho_interval = as<c_int>(pars[i]);
-    
-    
+
+
     else if (nm == "polish")
       settings->polish = as<c_int>(pars[i]);
     else if (nm == "verbose")
@@ -256,7 +256,7 @@ void translateSettings(OSQPSettings* settings, const List& pars)
     else if (nm == "warm_start")
       settings->warm_start = as<c_int>(pars[i]);
   }
-  
+
   return;
 }
 
@@ -264,7 +264,7 @@ void translateSettings(OSQPSettings* settings, const List& pars)
 void rosqpUpdateSettings(SEXP workPtr, SEXP val, std::string nm)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
-  
+
   if (nm == "check_termination")
     osqp_update_check_termination(work, as<c_int>(val));
   else if (nm == "max_iter")
@@ -295,19 +295,19 @@ void rosqpUpdateSettings(SEXP workPtr, SEXP val, std::string nm)
     osqp_update_eps_rel(work, as<c_float>(val));
   else
     Rcout << "Param " + nm + " cannot be updated live" << std::endl;
-  
+
 }
 
 // [[Rcpp::export]]
 SEXP rosqpGetData(SEXP workPtr, std::string nm)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
-  
+
   if (nm == "P")
     return toDgCMat(work->data->P);
   if (nm == "A")
     return toDgCMat(work->data->A);
-  
+
   if (nm == "q")
   {
     int n = work->data->n;
@@ -326,30 +326,30 @@ SEXP rosqpGetData(SEXP workPtr, std::string nm)
     NumericVector q(work->data->u, work->data->u + n);
     return q;
   }
-    
-  
+
+
   return R_NilValue;
 }
 
 S4 toDgCMat(csc* inmat)
 {
   S4 m("dgCMatrix");
-  
+
   int nnz = inmat->nzmax;
   int nr = inmat->m;
   int nc = inmat->n;
-  
+
   NumericVector x(inmat->x, inmat->x+nnz);
   IntegerVector i(inmat->i, inmat->i+nnz);
   IntegerVector p(inmat->p, inmat->p+nc+1);
   IntegerVector dim = IntegerVector::create(nr, nc);
-  
-  
+
+
   m.slot("i")   = i;
   m.slot("p")   = p;
   m.slot("x")   = x;
   m.slot("Dim") = dim;
-  
+
   return m;
 }
 
@@ -364,15 +364,15 @@ void mycleanup (OSQPWorkspace* x)
 void rosqpWarmStart(SEXP workPtr, Rcpp::Nullable<NumericVector> x, Rcpp::Nullable<NumericVector> y)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
-  
-  if(x.isNull() && y.isNull()) 
+
+  if(x.isNull() && y.isNull())
   {
     return;
   } else if (x.isNotNull() && y.isNotNull())
   {
     osqp_warm_start(work, as<NumericVector>(x.get()).begin(),as<NumericVector>(y.get()).begin());
-    
-    
+
+
   } else if (x.isNotNull())
   {
     osqp_warm_start_x(work, as<NumericVector>(x.get()).begin());
