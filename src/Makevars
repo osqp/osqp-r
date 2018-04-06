@@ -1,7 +1,8 @@
 OSQP_DIR=../osqp_sources/
 
-PKG_CFLAGS=-I$(OSQP_DIR)/include -I$(OSQP_DIR)/lin_sys/direct/pardiso -I$(OSQP_DIR)/lin_sys/direct/suitesparse/amd/include -I$(OSQP_DIR)/lin_sys/direct/suitesparse/ldl/include -I$(OSQP_DIR)/lin_sys/direct/suitesparse -I$(OSQP_DIR)/lin_sys
+PKG_CXXFLAGS=-I$(OSQP_DIR)/include -I$(OSQP_DIR)/lin_sys/direct/pardiso -I$(OSQP_DIR)/lin_sys/direct/suitesparse/amd/include -I$(OSQP_DIR)/lin_sys/direct/suitesparse/ldl/include -I$(OSQP_DIR)/lin_sys/direct/suitesparse -I$(OSQP_DIR)/lin_sys
 
-OBJECTS=$(OSQP_DIR)/auxil.o $(OSQP_DIR)/cs.o $(OSQP_DIR)/ctrlc.o $(OSQP_DIR)/kkt.o $(OSQP_DIR)/lin_alg.o $(OSQP_DIR)/lin_sys.o $(OSQP_DIR)/lin_sys/direct/pardiso/pardiso.o $(OSQP_DIR)/lin_sys/direct/pardiso/pardiso_loader.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_1.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_2.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_aat.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_control.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_defaults.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_info.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_order.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_post_tree.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_postorder.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_preprocess.o $(OSQP_DIR)/lin_sys/direct/suitesparse/amd/src/amd_valid.o $(OSQP_DIR)/lin_sys/direct/suitesparse/ldl/src/ldl.o $(OSQP_DIR)/lin_sys/direct/suitesparse/SuiteSparse_config.o $(OSQP_DIR)/lin_sys/direct/suitesparse/suitesparse_ldl.o $(OSQP_DIR)/lin_sys/lib_handler.o $(OSQP_DIR)/osqp.o $(OSQP_DIR)/polish.o $(OSQP_DIR)/proj.o $(OSQP_DIR)/scaling.o $(OSQP_DIR)/util.o osqp_solve_interface.o RcppExports.o
+OBJECTS= \
+libosqpstatic.a osqp_solve_interface.o RcppExports.o
 
 CXX_STD=CXX11

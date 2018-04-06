@@ -43,7 +43,7 @@ SEXP rosqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericV
   std::copy(u.begin(), u.end(), uvec.begin());
 
   std::unique_ptr<OSQPSettings> settings (new OSQPSettings);
-  set_default_settings(settings.get());
+  osqp_set_default_settings(settings.get());
 
   if (pars.size())
     translateSettings(settings.get(), pars);

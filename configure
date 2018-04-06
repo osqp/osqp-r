@@ -1,0 +1,13 @@
+set -x
+set -e
+
+which cmake
+
+cmake ./osqp_sources -DUNITTESTS=OFF
+cmake --build ./osqp_sources
+
+# Linux
+cp ./osqp_sources/out/libosqpstatic.a src/ || echo "Failed: libosqpstatic.a -> src"
+
+# Mac
+cp ./osqp_sources/out/libosqpstatic.a src/ || echo "Failed: libosqpstatic.a -> src"
