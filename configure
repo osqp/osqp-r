@@ -1,8 +1,10 @@
 set -x
 set -e
 
-which cmake
+git submodule init
+git submodule update
 
+which cmake
 cmake ./osqp_sources -DUNITTESTS=OFF
 cmake --build ./osqp_sources
 
