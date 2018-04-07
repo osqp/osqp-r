@@ -3,12 +3,13 @@ set -e
 pwd
 cd osqp_sources
 ls
+
+which cmake
 cmake -DUNITTESTS=OFF .
 cmake --build .
 
-which cmake
-cmake ./osqp_sources -DUNITTESTS=OFF
-cmake --build ./osqp_sources
+cd ..
+
 
 # Linux
 cp ./osqp_sources/out/libosqpstatic.a src/ || echo "Failed: libosqpstatic.a -> src"

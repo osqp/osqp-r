@@ -36,5 +36,6 @@ print(res$x)
 
 From github:
 ```{r}
+library(devtools)
 install_git("git://github.com/goulart-paul/osqp-r",submodules = TRUE)
 ```
