@@ -1,6 +1,10 @@
 set -x
 set -e
 pwd
+cd osqp_sources
+ls
+cmake -DUNITTESTS=OFF .
+cmake --build .
 
 which cmake
 cmake ./osqp_sources -DUNITTESTS=OFF
