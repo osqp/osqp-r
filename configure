@@ -1,8 +1,13 @@
 set -x
 set -e
+
+tail DESCRIPTION
+
 pwd
 cd osqp_sources
-ls
+pwd
+
+tail CMakeLists.txt
 
 which cmake
 cmake -DUNITTESTS=OFF .
