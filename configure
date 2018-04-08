@@ -6,6 +6,7 @@ tail DESCRIPTION
 pwd
 cd osqp_sources
 pwd
+ls -lrta
 
 tail CMakeLists.txt
 
