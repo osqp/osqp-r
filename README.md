@@ -37,5 +37,6 @@ print(res$x)
 From github:
 ```{r}
 install.packages("remotes")
+remotes::install_github("r-lib/remotes#103")
 remotes::install_git("git://github.com/goulart-paul/osqp-r",submodules = TRUE)
 ```
