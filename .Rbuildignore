@@ -1,0 +1,12 @@
+^\.travis\.yml
+CMakeFile
+CMakeCache.txt
+libosqpstatic.a
+osqp_sources/\.bumpversion.cfg
+osqp_sources/\.git
+osqp_sources/\.travis\.yml
+cmake_uninstall.cmake
+cmake_install.cmake
+osqp-targets.cmake
+osqp-config.cmake
+out

@@ -1,9 +1,14 @@
+# This script is executed automatically by R when
+# a user builds rosqp from the R command line using
+# "R CMD install". It builds the osqp static Library
+# via cmake so that R can link to it.
+
 # terminate on failure
 set -e
 
 echo "-- Starting OSQP build via cmake ..."
 cd osqp_sources
-cmake -DR_LANG=TRUE -DUNITTESTS=OFF .
+cmake -DR_LANG=TRUE .
 cmake --build .
 cd ..
 
