@@ -1,24 +1,11 @@
-set -x
+# terminate on failure
 set -e
 
-tail DESCRIPTION
+echo "-- Starting OSQP build via cmake ..."
+cmake -DR_LANG=TRUE ./osqp_sources
+cmake --build ./osqp_sources
 
-pwd
-cd osqp_sources
-pwd
-ls -lrta
-
-tail CMakeLists.txt
-
-which cmake
-cmake -DUNITTESTS=OFF .
-cmake --build .
-
-cd ..
-
-
-# Linux
+# Linux / OSX
 cp ./osqp_sources/out/libosqpstatic.a src/ || echo "Failed: libosqpstatic.a -> src"
 
-# Mac
-cp ./osqp_sources/out/libosqpstatic.a src/ || echo "Failed: libosqpstatic.a -> src"
+echo "-- Built libosqpstatic.a"
