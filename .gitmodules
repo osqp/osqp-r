@@ -1,3 +1,4 @@
 [submodule "osqp"]
 	path = osqp_sources
 	url = git://github.com/OxfordControl/osqp
+	branch = R-interface-dev
