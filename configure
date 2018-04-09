@@ -2,8 +2,10 @@
 set -e
 
 echo "-- Starting OSQP build via cmake ..."
-cmake -DR_LANG=TRUE ./osqp_sources
-cmake --build ./osqp_sources
+cd osqp_sources
+cmake -DR_LANG=TRUE .
+cmake --build .
+cd ..
 
 # Linux / OSX
 cp ./osqp_sources/out/libosqpstatic.a src/ || echo "Failed: libosqpstatic.a -> src"
