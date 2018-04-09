@@ -3,7 +3,7 @@ set -e
 
 echo "-- Starting OSQP build via cmake ..."
 cd osqp_sources
-cmake -DR_LANG=TRUE .
+cmake -DR_LANG=TRUE -DUNITTESTS=OFF .
 cmake --build .
 cd ..
 
