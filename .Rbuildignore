@@ -1,5 +1,4 @@
 ^\.travis\.yml
-osqp_sources/configure/cmake/cmake_uninstall.cmake.in
 osqp_sources/CMakeFiles
 osqp_sources/lin_sys/direct/CMakeFiles
 osqp_sources/CMakeCache.txt
@@ -7,8 +6,9 @@ libosqpstatic.a
 osqp_sources/\.bumpversion.cfg
 osqp_sources/\.git
 osqp_sources/\.travis\.yml
-cmake_uninstall.cmake
+cmake_uninstall.cmake$
 cmake_install.cmake
 osqp-targets.cmake
 osqp-config.cmake
 out
+CMakeDirectoryInformation.cmake
