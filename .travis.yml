@@ -8,13 +8,15 @@ cache: packages
 
 os:
   - linux
-  - osx
-  - windows
+  # - osx
+  # - windows
 
 #fussy building for CRAN compatibility
 warnings_are_errors: true
 r_check_args: --as-cran
 disable_homebrew: false
 
-install:
-  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install cmake; else brew install cmake; fi
+addons:
+  apt:
+    packages:
+      - cmake
