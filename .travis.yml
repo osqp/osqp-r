@@ -1,15 +1,15 @@
 language: r
 r:
   - release
-  # Test on old / devel versions ?
-  # - oldrel
-  # - devel
+ #  - oldrel
+ #  - devel
 
 cache: packages
 
 os:
-  # - linux
+  - linux
   - osx
+  - windows
 
 #fussy building for CRAN compatibility
 warnings_are_errors: true
