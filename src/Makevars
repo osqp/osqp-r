@@ -2,7 +2,7 @@ OSQP_STATIC_LIB=libosqpstatic.a
 
 PKG_LIBS = -losqpstatic
 
-OSQP_DIR=../osqp_sources
+OSQP_DIR=./osqp_sources
 
 PARDISO_DIR=$(OSQP_DIR)/lin_sys/direct/pardiso
 

@@ -1,18 +1,26 @@
 # This script is executed automatically by R when
 # a user builds rosqp from the R command line using
 # "R CMD install". It builds the osqp static Library
-# via cmake so that R can link to it.
+# via cmake so that R can link to it if cmake exists
+# in this system.   Otherwise it will be build via
+# the R Makevars system (e.g. because it is being
+# built on the CRAN build farm)
 
 # terminate on failure
 set -e
 
-echo "-- Starting OSQP build via cmake ..."
-cd osqp_sources
-cmake -DR_LANG=TRUE .
-cmake --build .
-cd ..
+if hash ASLHAS 2>/dev/null; then
 
-# Linux / OSX
-cp ./osqp_sources/out/libosqpstatic.a src/ || echo "Failed: libosqpstatic.a -> src"
+  echo "-- Trying to build libosqpstatic.a via cmake ..."
+  cd src/osqp_sources
+  cmake -DR_LANG=TRUE .
+  cmake --build .
+  cd ../../
 
-echo "-- Built libosqpstatic.a"
+  # Linux / OSX
+  cp ./src/osqp_sources/out/libosqpstatic.a src/
+  echo "-- Built libosqpstatic.a"
+
+else
+  echo "-- No cmake, so I will try to make libosqpstatic.a via R Makevars instead"
+fi

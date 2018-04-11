@@ -11,6 +11,6 @@ osqp-targets.cmake$
 osqp-config.cmake$
 out
 CMakeDirectoryInformation.cmake
-configure
 ^.*\\.o$
+^.*\\.gz$
 libosqpstatic.a
