@@ -11,12 +11,15 @@ os:
   # - osx
   # - windows
 
+sudo: required
+
 #fussy building for CRAN compatibility
 warnings_are_errors: true
 r_check_args: --as-cran
 disable_homebrew: false
 
-addons:
-  apt:
-    packages:
-      - cmake
+apt_packages:
+  - cmake
+
+brew_packages:
+  - cmake
