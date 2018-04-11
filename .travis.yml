@@ -7,8 +7,8 @@ r:
 cache: packages
 
 os:
-  - linux
-  # - osx
+  # - linux
+  - osx
   # - windows
 
 sudo: required
@@ -23,3 +23,9 @@ apt_packages:
 
 brew_packages:
   - cmake
+
+R_binary_packages:
+  - Rcpp
+  - methods
+  - Matrix
+  - R6
