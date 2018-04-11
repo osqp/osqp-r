@@ -18,6 +18,9 @@ PKG_CXXFLAGS= \
 -I$(SUITESPARSE_DIR)/amd/include \
 -I$(SUITESPARSE_DIR)/ldl/include
 
+PKG_LIBS= -L$(OSQP_DIR)
+
+
 # We don't use wildcards since R complains about GNU make extensions
 # OSQP_SOURCES = $(wildcard $(OSQP_DIR)/src/*.c $(OSQP_DIR)/lin_sys/*.c $(PARDISO_DIR)/*.c $(SUITESPARSE_DIR)/*.c $(SUITESPARSE_DIR)/amd/src/*.c $(SUITESPARSE_DIR)/ldl/src/*.c)
 
@@ -62,7 +65,7 @@ all: $(SHLIB)
 $(SHLIB): $(OSQP_STATIC_LIB)
 
 $(OSQP_OBJECTS): %.o : %.c
-	$(CC) $(PKG_CXXFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(PKG_CXXFLAGS) $(FPICFLAGS) $(CFLAGS) -c $< -o $@
 
 $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
 
@@ -74,8 +77,8 @@ $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
 
 	$(echo $(OSQP_OBJECTS))
 
-	ls;
-	$(AR) $(ARFLAGS) $(OSQP_STATIC_LIB) $(OSQP_OBJECTS)
+	$(AR) qc $(OSQP_STATIC_LIB) $(OSQP_OBJECTS)
+	ranlib $(OSQP_STATIC_LIB)
 
 clean:
 	$(RM) $(OSQP_OBJECTS)
