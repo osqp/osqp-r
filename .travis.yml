@@ -21,9 +21,6 @@ disable_homebrew: false
 apt_packages:
   - cmake
 
-brew_packages:
-  - cmake
-
 R_binary_packages:
   - Rcpp
   - methods
