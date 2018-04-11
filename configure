@@ -1,6 +1,6 @@
 # This script is executed automatically by R when
-# a user builds rosqp from the R command line using
-# "R CMD install". It builds the osqp static Library
+# a user installs osqp from the R command line using
+# "R CMD install .". It builds the osqp static Library
 # via cmake so that R can link to it if cmake exists
 # in this system.   Otherwise it will be build via
 # the R Makevars system (e.g. because it is being
@@ -9,7 +9,7 @@
 # terminate on failure
 set -e
 
-if hash ASLHAS 2>/dev/null; then
+if hash cmake 2>/dev/null; then
 
   echo "-- Trying to build libosqpstatic.a via cmake ..."
   cd src/osqp_sources
