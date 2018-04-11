@@ -1,8 +1,81 @@
-OSQP_DIR=../osqp_sources/
+OSQP_STATIC_LIB=libosqpstatic.a
 
-PKG_CXXFLAGS=-I$(OSQP_DIR)/include -I$(OSQP_DIR)/lin_sys/direct/pardiso -I$(OSQP_DIR)/lin_sys/direct/suitesparse/amd/include -I$(OSQP_DIR)/lin_sys/direct/suitesparse/ldl/include -I$(OSQP_DIR)/lin_sys/direct/suitesparse -I$(OSQP_DIR)/lin_sys
+PKG_LIBS = -losqpstatic
 
-OBJECTS= \
-libosqpstatic.a osqp_solve_interface.o RcppExports.o
+OSQP_DIR=../osqp_sources
+
+PARDISO_DIR=$(OSQP_DIR)/lin_sys/direct/pardiso
+
+SUITESPARSE_DIR=$(OSQP_DIR)/lin_sys/direct/suitesparse
+
+OBJECTS= osqp_solve_interface.o RcppExports.o
+
+PKG_CXXFLAGS= \
+-I$(OSQP_DIR)/include \
+-I$(OSQP_DIR)/lin_sys \
+-I$(PARDISO_DIR)      \
+-I$(SUITESPARSE_DIR)  \
+-I$(SUITESPARSE_DIR)/amd/include \
+-I$(SUITESPARSE_DIR)/ldl/include
+
+# We don't use wildcards since R complains about GNU make extensions
+# OSQP_SOURCES = $(wildcard $(OSQP_DIR)/src/*.c $(OSQP_DIR)/lin_sys/*.c $(PARDISO_DIR)/*.c $(SUITESPARSE_DIR)/*.c $(SUITESPARSE_DIR)/amd/src/*.c $(SUITESPARSE_DIR)/ldl/src/*.c)
+
+OSQP_SOURCES = \
+$(OSQP_DIR)/src/auxil.c   \
+$(OSQP_DIR)/src/cs.c      \
+$(OSQP_DIR)/src/ctrlc.c   \
+$(OSQP_DIR)/src/kkt.c     \
+$(OSQP_DIR)/src/lin_alg.c \
+$(OSQP_DIR)/src/lin_sys.c \
+$(OSQP_DIR)/src/osqp.c    \
+$(OSQP_DIR)/src/polish.c  \
+$(OSQP_DIR)/src/proj.c    \
+$(OSQP_DIR)/src/scaling.c \
+$(OSQP_DIR)/src/util.c    \
+$(OSQP_DIR)/lin_sys/lib_handler.c         \
+$(PARDISO_DIR)/pardiso.c   \
+$(PARDISO_DIR)/pardiso_loader.c           \
+$(SUITESPARSE_DIR)/SuiteSparse_config.c   \
+$(SUITESPARSE_DIR)/suitesparse_ldl.c      \
+$(SUITESPARSE_DIR)/ldl/src/ldl.c          \
+$(SUITESPARSE_DIR)/amd/src/amd_1.c            \
+$(SUITESPARSE_DIR)/amd/src/amd_2.c            \
+$(SUITESPARSE_DIR)/amd/src/amd_aat.c          \
+$(SUITESPARSE_DIR)/amd/src/amd_control.c      \
+$(SUITESPARSE_DIR)/amd/src/amd_defaults.c     \
+$(SUITESPARSE_DIR)/amd/src/amd_info.c         \
+$(SUITESPARSE_DIR)/amd/src/amd_order.c        \
+$(SUITESPARSE_DIR)/amd/src/amd_post_tree.c    \
+$(SUITESPARSE_DIR)/amd/src/amd_postorder.c    \
+$(SUITESPARSE_DIR)/amd/src/amd_preprocess.c   \
+$(SUITESPARSE_DIR)/amd/src/amd_valid.c
+
+OSQP_OBJECTS = $(OSQP_SOURCES:.c=.o)
 
 CXX_STD=CXX11
+
+.PHONY: all
+
+all: $(SHLIB)
+
+$(SHLIB): $(OSQP_STATIC_LIB)
+
+$(OSQP_OBJECTS): %.o : %.c
+	$(CC) $(PKG_CXXFLAGS) $(CFLAGS) -c $< -o $@
+
+$(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
+
+	$(info -- The OSQP static library should already exist and  \
+	be in the correct place if we are building via cmake. \
+	If we find ourselves without cmake (e.g. because the \
+	package is being built in the CRAN servers), then we have \
+	a go at building it here.)
+
+	$(echo $(OSQP_OBJECTS))
+
+	ls;
+	$(AR) $(ARFLAGS) $(OSQP_STATIC_LIB) $(OSQP_OBJECTS)
+
+clean:
+	$(RM) $(OSQP_OBJECTS)
