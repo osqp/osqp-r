@@ -17,12 +17,14 @@ $(SHLIBS) : $(OSQP_STATIC_LIB)
 $(OSQP_STATIC_LIB):
 
 		# The OSQP static library should already exist and
- 		# be in the correct place if we are building via cmake.
+		 # be in the correct place if we are building via cmake.
 		# If we find ourselves without cmake installed (e.g. because the
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 
-		(cd $(OSQP_LIB_DIR) && $(MAKE) \
-		CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS)" \
-		ARFLAGS="$(ARFLAGS)" AR="$(AR)" RANLIB="$(RANLIB)" \
+		$(info $(.VARIABLES))
+		(cd $(OSQP_LIB_DIR) && $(MAKE) CC="$(CC)" \
+		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
+		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
+		AR="$(AR)" RANLIB="$(RANLIB)" \
 		&& $(MAKE) clean)
