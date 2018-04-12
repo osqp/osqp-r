@@ -16,7 +16,9 @@ sudo: required
 #fussy building for CRAN compatibility
 warnings_are_errors: true
 r_check_args: --as-cran
-disable_homebrew: true
+disable_homebrew:
+   - true
+   - false
 
 R_binary_packages:
   - Rcpp
