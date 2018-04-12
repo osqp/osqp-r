@@ -8,7 +8,6 @@ cache: packages
 
 os:
   - linux
-  - osx
 
 sudo: required
 
@@ -25,6 +24,20 @@ R_binary_packages:
 matrix:
   include:
     - os: osx
+      r: release
       disable_homebrew: true
     - os: osx
+      r: oldrel
+      disable_homebrew: true
+    - os: osx
+      r: devel
+      disable_homebrew: true
+    - os: osx
+      r: release
+      disable_homebrew: false
+    - os: osx
+      r: oldrel
+      disable_homebrew: false
+    - os: osx
+      r: devel
       disable_homebrew: false
