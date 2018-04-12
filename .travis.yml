@@ -1,15 +1,15 @@
 language: r
 r:
   - release
- #  - oldrel
- #  - devel
+  - oldrel
+  - devel
 
 cache: packages
 
 os:
   - linux
   - osx
-  # - windows
+ - windows
 
 sudo: required
 
@@ -23,9 +23,9 @@ R_binary_packages:
   - Matrix
   - R6
 
-#matrix:
-#  include:
-#    - os: osx
-#      disable_homebrew: true
-#    - os: osx
-#      disable_homebrew: false
+matrix:
+  include:
+    - os: osx
+      disable_homebrew: true
+    - os: osx
+      disable_homebrew: false
