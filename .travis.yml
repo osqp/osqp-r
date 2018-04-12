@@ -7,7 +7,7 @@ r:
 cache: packages
 
 os:
-  # - linux
+  - linux
   - osx
   # - windows
 
