@@ -18,9 +18,6 @@ warnings_are_errors: true
 r_check_args: --as-cran
 disable_homebrew: false
 
-apt_packages:
-  - cmake
-
 R_binary_packages:
   - Rcpp
   - methods
