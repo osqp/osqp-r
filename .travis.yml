@@ -9,7 +9,6 @@ cache: packages
 os:
   - linux
   - osx
-  - windows
 
 sudo: required
 
