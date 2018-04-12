@@ -16,12 +16,16 @@ sudo: required
 #fussy building for CRAN compatibility
 warnings_are_errors: true
 r_check_args: --as-cran
-disable_homebrew:
-   - true
-   - false
 
 R_binary_packages:
   - Rcpp
   - methods
   - Matrix
   - R6
+
+  matrix:
+  include:
+    - os: osx
+      disable_homebrew: true
+    - os: osx
+      disable_homebrew: false
