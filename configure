@@ -15,7 +15,7 @@ if hash cmake 2>/dev/null; then
 	echo "-- Trying to build libosqpstatic.a via cmake ..."
 	cd src/osqp_sources
 	cmake -DR_LANG=TRUE .
-	make
+	make VERBOSE=TRUE
 	cd ../../
 
 	# Linux / OSX
@@ -24,5 +24,4 @@ if hash cmake 2>/dev/null; then
 
 else
 	echo "-- No cmake, so I will try to make libosqpstatic.a via R Makevars instead"
-	make ./src/osqp_lib/
 fi
