@@ -4,7 +4,7 @@ OSQP_INCLUDES= ./osqp_sources/include
 
 PKG_CXXFLAGS = -I$(OSQP_INCLUDES)
 
-OBJECTS= $(OSQP_STATIC_LIB) osqp_solve_interface.o RcppExports.o
+OBJECTS = osqp_solve_interface.o RcppExports.o $(OSQP_STATIC_LIB)
 
 CXX_STD=CXX11
 
