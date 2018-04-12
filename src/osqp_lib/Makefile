@@ -1,0 +1,64 @@
+OSQP_STATIC_LIB=libosqpstatic.a
+OSQP_SRC_DIR=../osqp_sources
+
+PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso
+
+SUITESPARSE_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/suitesparse
+
+OSQP_INCLUDES= \
+-I$(OSQP_SRC_DIR)/include \
+-I$(OSQP_SRC_DIR)/lin_sys \
+-I$(PARDISO_DIR)      \
+-I$(SUITESPARSE_DIR)  \
+-I$(SUITESPARSE_DIR)/amd/include \
+-I$(SUITESPARSE_DIR)/ldl/include
+
+# We don't use wildcards since R complains about GNU make extensions.
+# Otherwise we would do this:
+# OSQP_SOURCES = $(wildcard $(OSQP_SRC_DIR)/src/*.c $(OSQP_SRC_DIR)/lin_sys/*.c $(PARDISO_DIR)/*.c $(SUITESPARSE_DIR)/*.c $(SUITESPARSE_DIR)/amd/src/*.c $(SUITESPARSE_DIR)/ldl/src/*.c)
+
+OSQP_SOURCES = \
+$(OSQP_SRC_DIR)/src/auxil.c   \
+$(OSQP_SRC_DIR)/src/cs.c      \
+$(OSQP_SRC_DIR)/src/ctrlc.c   \
+$(OSQP_SRC_DIR)/src/kkt.c     \
+$(OSQP_SRC_DIR)/src/lin_alg.c \
+$(OSQP_SRC_DIR)/src/lin_sys.c \
+$(OSQP_SRC_DIR)/src/osqp.c    \
+$(OSQP_SRC_DIR)/src/polish.c  \
+$(OSQP_SRC_DIR)/src/proj.c    \
+$(OSQP_SRC_DIR)/src/scaling.c \
+$(OSQP_SRC_DIR)/src/util.c    \
+$(OSQP_SRC_DIR)/lin_sys/lib_handler.c         \
+$(PARDISO_DIR)/pardiso.c   \
+$(PARDISO_DIR)/pardiso_loader.c           \
+$(SUITESPARSE_DIR)/SuiteSparse_config.c   \
+$(SUITESPARSE_DIR)/suitesparse_ldl.c      \
+$(SUITESPARSE_DIR)/ldl/src/ldl.c          \
+$(SUITESPARSE_DIR)/amd/src/amd_1.c            \
+$(SUITESPARSE_DIR)/amd/src/amd_2.c            \
+$(SUITESPARSE_DIR)/amd/src/amd_aat.c          \
+$(SUITESPARSE_DIR)/amd/src/amd_control.c      \
+$(SUITESPARSE_DIR)/amd/src/amd_defaults.c     \
+$(SUITESPARSE_DIR)/amd/src/amd_info.c         \
+$(SUITESPARSE_DIR)/amd/src/amd_order.c        \
+$(SUITESPARSE_DIR)/amd/src/amd_post_tree.c    \
+$(SUITESPARSE_DIR)/amd/src/amd_postorder.c    \
+$(SUITESPARSE_DIR)/amd/src/amd_preprocess.c   \
+$(SUITESPARSE_DIR)/amd/src/amd_valid.c
+
+OSQP_OBJECTS = $(OSQP_SOURCES:.c=.o)
+
+CXX_STD=CXX11
+
+all: $(OSQP_STATIC_LIB)
+
+$(OSQP_OBJECTS): %.o : %.c
+	$(CC) $(OSQP_INCLUDES) $(CPICFLAGS) $(CFLAGS) -c $< -o $@
+
+$(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
+	$(AR) $(ARFLAGS) $(OSQP_STATIC_LIB) $(OSQP_OBJECTS)
+	$(RANLIB) $(OSQP_STATIC_LIB)
+
+clean:
+	$(RM) $(OSQP_OBJECTS)

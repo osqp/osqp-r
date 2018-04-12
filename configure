@@ -11,16 +11,17 @@ set -e
 
 if hash cmake 2>/dev/null; then
 
-  echo "-- Trying to build libosqpstatic.a via cmake ..."
-  cd src/osqp_sources
-  cmake -DR_LANG=TRUE .
-  cmake --build .
-  cd ../../
+	echo "-- Trying to build libosqpstatic.a via cmake ..."
+	cd src/osqp_sources
+	cmake -DR_LANG=TRUE .
+	make VERBOSE=TRUE
+	cd ../../
 
-  # Linux / OSX
-  cp ./src/osqp_sources/out/libosqpstatic.a src/
-  echo "-- Built libosqpstatic.a"
+	# Linux / OSX
+	cp ./src/osqp_sources/out/libosqpstatic.a ./src/osqp_lib
+	echo "-- Built libosqpstatic.a"
 
 else
-  echo "-- No cmake, so I will try to make libosqpstatic.a via R Makevars instead"
+	echo "-- No cmake, so I will try to make libosqpstatic.a via R Makevars instead"
+	make ./src/osqp_lib/
 fi
