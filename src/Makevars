@@ -32,7 +32,8 @@ $(OSQP_STATIC_LIB): $(OSQP_SRC_CONFIGURE_H)
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 
-		(ls ./osqp/lib)
+		(ls -lrt $(OSQP_STATIC_LIB))
+		(ls -lrt $(OSQP_SRC_CONFIGURE_H))
 		(info OSQP_STATIC_LIB=$(OSQP_STATIC_LIB))
 
 	  (cd $(OSQP_DIR) && \
