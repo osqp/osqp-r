@@ -8,8 +8,8 @@ init:
         Import-Module '..\appveyor-tool.ps1'
 
 install:
-  ps: Bootstrap
-  - git submodule update --init --recursive
+  - ps: Bootstrap
+  - cmd: git submodule update --init --recursive
 
 cache:
   - C:\RLibrary
