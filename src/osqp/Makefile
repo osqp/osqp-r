@@ -1,6 +1,7 @@
 OSQP_SRC_DIR=../osqp_sources
-OSQP_INCLUDE_DIR=./include
+OSQP_INCLUDE_DIR=./include/osqp
 OSQP_LIB_DIR=./lib
+OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqpstatic.a
 
 PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso
 

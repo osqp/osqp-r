@@ -14,17 +14,11 @@ if hash cmake 2>/dev/null; then
 
 	echo "-- Trying to build libosqpstatic.a via cmake ..."
 	cd src/osqp_sources
-	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../osqp_lib_dummy/
+	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../osqp/
 	cmake --build . --target install
 	cd ../../
 	echo "-- Built libosqpstatic.a"
 
 else
 	echo "-- No cmake, so I will try to make libosqpstatic.a via R Makevars instead"
-
-	# We couldn't run cmake, but osqp_configure.h is still required.
-	# Use the R-specific one that doesn't need cmake.
-	echo "-- No cmake, so I will use an R-specific osqp_configure.h"
-	cp ./src/osqp_configure_R.h ./src/osqp_sources/include/osqp_configure.h
-
 fi
