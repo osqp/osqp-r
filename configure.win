@@ -6,9 +6,7 @@
 # the R Makevars system (e.g. because it is being
 # built on the CRAN build farm)
 
-# terminate on failure
-set -e
-set -x
+where cmake
 
 if hash cmake 2>/dev/null; then
 
