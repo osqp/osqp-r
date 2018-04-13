@@ -2,7 +2,6 @@ language: r
 r:
   - release
   - oldrel
-  - devel
 
 cache: packages
 
@@ -30,14 +29,8 @@ matrix:
       r: oldrel
       disable_homebrew: true
     - os: osx
-      r: devel
-      disable_homebrew: true
-    - os: osx
       r: release
       disable_homebrew: false
     - os: osx
       r: oldrel
-      disable_homebrew: false
-    - os: osx
-      r: devel
       disable_homebrew: false
