@@ -22,7 +22,6 @@ $(OSQP_STATIC_LIB):
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 
-		$(info $(.VARIABLES))
 		(cd $(OSQP_LIB_DIR) && $(MAKE) CC="$(CC)" \
 		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
