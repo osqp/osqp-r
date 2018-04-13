@@ -16,17 +16,11 @@ CXX_STD=CXX11
 
 all: $(SHLIBS)
 
-$(SHLIBS) : $(OSQP_STATIC_LIB) $(OSQP_CONFIGURE_H)
+$(SHLIBS) : $(OSQP_STATIC_LIB)
 
-$(OSQP_CONFIGURE_H):
+	$(info building $(SHLIBS))
 
-		# If we find ourselves without cmake installed, then we
-		# will need to use a canned osqp_configure.h with some
-		# reasonable R-specific settings.
-		 
-		$(CP) $(OSQP_RCONFIG_SRC_INCLUDE) $OSQP_CONFIGURE_H
-
-$(OSQP_STATIC_LIB):
+$(OSQP_STATIC_LIB): $(OSQP_CONFIGURE_H)
 
 		# The OSQP static library should already exist and
 		# be in the correct place if we are building via cmake.
@@ -39,3 +33,13 @@ $(OSQP_STATIC_LIB):
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
 		AR="$(AR)" RANLIB="$(RANLIB)" \
 		&& $(MAKE) clean)
+
+$(OSQP_CONFIGURE_H):
+
+		# If we find ourselves without cmake installed, then we
+		# will need to use a canned osqp_configure.h with some
+		# reasonable R-specific settings.
+
+		$(info in OSQP_CONFIGURE_H for : $(OSQP_CONFIGURE_H))
+
+		$(CP) $(OSQP_RCONFIG_DEFAULT_INCLUDE) $(OSQP_CONFIGURE_H)
