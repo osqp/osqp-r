@@ -10,7 +10,7 @@
 set -e
 set -x
 
-if hash cmake 2>/dev/null; then
+if hash XXXcmake 2>/dev/null; then
 
 	echo "-- Trying to build libosqpstatic.a via cmake ..."
 	cd src/osqp_sources

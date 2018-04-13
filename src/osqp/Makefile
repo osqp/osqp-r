@@ -1,11 +1,11 @@
-OSQP_SRC_DIR=../osqp_sources
-OSQP_INCLUDE_DIR=./include/osqp
-OSQP_LIB_DIR=./lib
+OSQP_SRC_DIR=../osqp_sources/
+OSQP_INCLUDE_DIR=./include/osqp/
+OSQP_LIB_DIR=./lib/
 OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqpstatic.a
 
-PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso
+PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso/
 
-SUITESPARSE_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/suitesparse
+SUITESPARSE_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/suitesparse/
 
 OSQP_INCLUDES= \
 -I$(OSQP_SRC_DIR)/include \
@@ -59,10 +59,12 @@ $(OSQP_OBJECTS): %.o : %.c
 	$(CC) $(OSQP_INCLUDES) -I$(R_INCLUDE_DIR) $(CPICFLAGS) $(CFLAGS) -c $< -o $@
 
 $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
+	mkdir -p $(OSQP_LIB_DIR)
 	$(AR) $(ARFLAGS) $(OSQP_STATIC_LIB) $(OSQP_OBJECTS)
 	$(RANLIB) $(OSQP_STATIC_LIB)
 
 osqp_includes:
+	mkdir -p $(OSQP_INCLUDE_DIR)
 	cp $(OSQP_SRC_DIR)/include/*.h $(OSQP_INCLUDE_DIR)
 
 clean:
