@@ -12,6 +12,9 @@ set -x
 
 if hash cmake 2>/dev/null; then
 
+	echo "where is R?"
+	/home/travis/build/goulart-paul/osqp-r/rosqp.Rcheck/R_check_bin/R RHOME
+
 	echo "-- Trying to build libosqpstatic.a via cmake ..."
 	cd src/osqp_sources
 	cmake -DR_LANG=TRUE .
