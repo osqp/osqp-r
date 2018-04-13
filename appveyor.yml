@@ -47,3 +47,6 @@ artifacts:
 
   - path: 'src'
     name: src
+
+  - path: rosqp.Rcheck\00_pkg_src\rosqp
+    name: build
