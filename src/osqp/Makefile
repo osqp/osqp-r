@@ -63,7 +63,7 @@ $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
 	$(RANLIB) $(OSQP_STATIC_LIB)
 
 osqp_includes:
-	$(CP) $(OSQP_SRC_DIR)/include/*.h $(OSQP_INCLUDE_DIR)
+	cp $(OSQP_SRC_DIR)/include/*.h $(OSQP_INCLUDE_DIR)
 
 clean:
 	$(RM) $(OSQP_OBJECTS)

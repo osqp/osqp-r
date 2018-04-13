@@ -1,26 +1,28 @@
 OSQP_DIR=./osqp
+OSQP_SRC_INCLUDE_DIR=./osqp_sources/include
 OSQP_LIB_DIR=$(OSQP_DIR)/lib
 OSQP_INCLUDE_DIR=$(OSQP_DIR)/include/osqp
 OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqpstatic.a
 
-OSQP_RCONFIG_DEFAULT_INCLUDE=osqp_configure_R.h
-OSQP_CONFIGURE_H=$(OSQP_INCLUDE_DIR)/osqp_configure.h
+OSQP_RCONFIG_DEFAULT_INCLUDE=./osqp_configure_R.h
+OSQP_SRC_CONFIGURE_H=$(OSQP_SRC_INCLUDE_DIR)/osqp_configure.h
 
 PKG_CXXFLAGS = -I$(OSQP_INCLUDE_DIR)
 
-OBJECTS = osqp_solve_interface.o RcppExports.o $(OSQP_STATIC_LIB)
+ROBJECTS = osqp_solve_interface.o RcppExports.o
+OBJECTS  = $(ROBJECTS) $(OSQP_STATIC_LIB)
 
 CXX_STD=CXX11
 
-.PHONY: all
+.PHONY: $(OSQP_STATIC_LIB) $(OSQP_CONFIGURE_H)
 
 all: $(SHLIBS)
 
-$(SHLIBS) : $(OSQP_STATIC_LIB)
+$(SHLIBS): $(OSQP_STATIC_LIB) 
 
-	$(info building $(SHLIBS))
+$(ROBJECTS): $(OSQP_STATIC_LIB)
 
-$(OSQP_STATIC_LIB): $(OSQP_CONFIGURE_H)
+$(OSQP_STATIC_LIB): $(OSQP_SRC_CONFIGURE_H)
 
 		# The OSQP static library should already exist and
 		# be in the correct place if we are building via cmake.
@@ -28,18 +30,18 @@ $(OSQP_STATIC_LIB): $(OSQP_CONFIGURE_H)
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 
-		(cd $(OSQP_LIB_DIR) && $(MAKE) CC="$(CC)" \
+		(cd $(OSQP_DIR) && $(MAKE) CC="$(CC)" \
 		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
 		AR="$(AR)" RANLIB="$(RANLIB)" \
 		&& $(MAKE) clean)
 
-$(OSQP_CONFIGURE_H):
+$(OSQP_SRC_CONFIGURE_H):
 
 		# If we find ourselves without cmake installed, then we
 		# will need to use a canned osqp_configure.h with some
-		# reasonable R-specific settings.
+		# reasonable R-specific settings.  It should live with the
+		# other ./osqp_source include and will eventually be copied
+		# to ./osqp/include by the ./osqp/Makefile
 
-		$(info in OSQP_CONFIGURE_H for : $(OSQP_CONFIGURE_H))
-
-		$(CP) $(OSQP_RCONFIG_DEFAULT_INCLUDE) $(OSQP_CONFIGURE_H)
+		(cp $(OSQP_RCONFIG_DEFAULT_INCLUDE) $(OSQP_SRC_CONFIGURE_H))
