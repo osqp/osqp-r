@@ -5,8 +5,6 @@
 extern "C" {
 # endif /* ifdef __cplusplus */
 
-#define R_LANG
-
 // Operating system (no cmake)
 #ifdef _WIN32
 #define IS_WINDOWS

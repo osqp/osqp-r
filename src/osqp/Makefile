@@ -56,7 +56,7 @@ CXX_STD=CXX11
 all: $(OSQP_STATIC_LIB) osqp_includes
 
 $(OSQP_OBJECTS): %.o : %.c
-	$(CC) $(OSQP_INCLUDES) -I$(R_INCLUDE_DIR) $(CPICFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(OSQP_INCLUDES) -I$(R_INCLUDE_DIR) $(CPICFLAGS) $(OSQP_FLAGS) $(CFLAGS) -c $< -o $@
 
 $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
 	mkdir -p $(OSQP_LIB_DIR)

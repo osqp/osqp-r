@@ -1,13 +1,15 @@
 OSQP_DIR=./osqp
-OSQP_SRC_INCLUDE_DIR=./osqp_sources/include
 OSQP_LIB_DIR=$(OSQP_DIR)/lib
 OSQP_INCLUDE_DIR=$(OSQP_DIR)/include/osqp
 OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqpstatic.a
 
+OSQP_SRC_INCLUDE_DIR=./osqp_sources/include
 OSQP_RCONFIG_DEFAULT_INCLUDE=./osqp_configure_R.h
 OSQP_SRC_CONFIGURE_H=$(OSQP_SRC_INCLUDE_DIR)/osqp_configure.h
 
-PKG_CXXFLAGS = -I$(OSQP_INCLUDE_DIR)
+OSQP_FLAGS = -DR_LANG
+
+PKG_CXXFLAGS = -I$(OSQP_INCLUDE_DIR) $(OSQP_FLAGS)
 
 ROBJECTS = osqp_solve_interface.o RcppExports.o
 OBJECTS  = $(ROBJECTS) $(OSQP_STATIC_LIB)
@@ -30,7 +32,8 @@ $(OSQP_STATIC_LIB): $(OSQP_SRC_CONFIGURE_H)
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 
-	  (cd $(OSQP_DIR) && $(MAKE) CC="$(CC)" \
+	  (cd $(OSQP_DIR) && \
+		$(MAKE) CC="$(CC)" OSQP_FLAGS="$(OSQP_FLAGS)" \
 		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
 		AR="$(AR)" RANLIB="$(RANLIB)" \
