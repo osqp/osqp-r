@@ -1,5 +1,6 @@
-OSQP_STATIC_LIB=libosqpstatic.a
 OSQP_SRC_DIR=../osqp_sources
+OSQP_INCLUDE_DIR=./include
+OSQP_LIB_DIR=./lib
 
 PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso
 
@@ -51,7 +52,7 @@ OSQP_OBJECTS = $(OSQP_SOURCES:.c=.o)
 
 CXX_STD=CXX11
 
-all: $(OSQP_STATIC_LIB)
+all: $(OSQP_STATIC_LIB) osqp_includes
 
 $(OSQP_OBJECTS): %.o : %.c
 	$(CC) $(OSQP_INCLUDES) -I$(R_INCLUDE_DIR) $(CPICFLAGS) $(CFLAGS) -c $< -o $@
@@ -59,6 +60,9 @@ $(OSQP_OBJECTS): %.o : %.c
 $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
 	$(AR) $(ARFLAGS) $(OSQP_STATIC_LIB) $(OSQP_OBJECTS)
 	$(RANLIB) $(OSQP_STATIC_LIB)
+
+osqp_includes:
+	$(CP) $(OSQP_SRC_DIR)/include/*.h $(OSQP_INCLUDE_DIR)
 
 clean:
 	$(RM) $(OSQP_OBJECTS)
