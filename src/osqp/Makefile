@@ -1,14 +1,17 @@
+OSQP_OUT_INCLUDE_DIR=./include/osqp/
+OSQP_OUT_LIB_DIR=./lib/
+OSQP_STATIC_LIB=$(OSQP_OUT_LIB_DIR)/libosqpstatic.a
+
+OSQP_RCONFIG_DEFAULT_INCLUDE=../osqp_configure_R.h
 OSQP_SRC_DIR=../osqp_sources/
-OSQP_INCLUDE_DIR=./include/osqp/
-OSQP_LIB_DIR=./lib/
-OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqpstatic.a
+OSQP_SRC_INCLUDE_DIR=$(OSQP_SRC_DIR)/include
+OSQP_SRC_CONFIGURE_H=$(OSQP_SRC_INCLUDE_DIR)/osqp_configure.h
 
 PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso/
-
 SUITESPARSE_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/suitesparse/
 
-OSQP_INCLUDES= \
--I$(OSQP_SRC_DIR)/include \
+OSQP_SRC_INCLUDES_ALL= \
+-I$(OSQP_SRC_INCLUDE_DIR) \
 -I$(OSQP_SRC_DIR)/lin_sys \
 -I$(PARDISO_DIR)      \
 -I$(SUITESPARSE_DIR)  \
@@ -55,8 +58,9 @@ CXX_STD=CXX11
 
 all: $(OSQP_STATIC_LIB) osqp_includes
 
-$(OSQP_OBJECTS): %.o : %.c
-	$(CC) $(OSQP_INCLUDES) -I$(R_INCLUDE_DIR) $(CPICFLAGS) $(OSQP_FLAGS) $(CFLAGS) -c $< -o $@
+$(OSQP_OBJECTS): $(OSQP_SRC_CONFIGURE_H)
+	$(CC) -I$(OSQP_SRC_INCLUDES_ALL) -I$(R_INCLUDE_DIR) $(CPICFLAGS) $(OSQP_FLAGS) $(CFLAGS) -c $(@:.o=.c) -o $@
+
 
 $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
 	mkdir -p $(OSQP_LIB_DIR)
@@ -65,7 +69,10 @@ $(OSQP_STATIC_LIB): $(OSQP_OBJECTS)
 
 osqp_includes:
 	mkdir -p $(OSQP_INCLUDE_DIR)
-	cp $(OSQP_SRC_DIR)/include/*.h $(OSQP_INCLUDE_DIR)
+	cp $(OSQP_SRC_INCLUDE_DIR)/*.h $(OSQP_OUT_INCLUDE_DIR)
+
+$(OSQP_SRC_CONFIGURE_H):
+	cp $(OSQP_RCONFIG_DEFAULT_INCLUDE) $(OSQP_SRC_CONFIGURE_H)
 
 clean:
 	$(RM) $(OSQP_OBJECTS)
