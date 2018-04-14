@@ -12,8 +12,13 @@ if hash cmake 2>/dev/null; then
 
 	echo "-- Trying to build libosqpstatic.a via cmake ..."
 	cd src/osqp_sources
+
+	mkdir -p build
+	cd build
 	cmake -DCMAKE_SH="CMAKE_SH-NOTFOUND" -G "MinGW Makefiles" -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../osqp/
-	cmake --build . --target install
+	cmake --build .. --target install
+	cd ..
+	rm -rf build/
 	cd ../../
 
 	#Windows
