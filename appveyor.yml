@@ -14,12 +14,6 @@ install:
 cache:
   - C:\RLibrary
 
-platform: x64
-
-environment:
-  R_ARCH: x64
-  GCC_PATH: mingw_32
-
 # Adapt as necessary starting from here
 
 build_script:
