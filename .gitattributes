@@ -1,4 +1,7 @@
 * text=auto
+*.c text
+*.h text
+*.cpp text
 data/* binary
 src/* text=lf
 R/* text=lf
