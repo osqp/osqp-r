@@ -1,4 +1,10 @@
-# rosqp
+# R interface for OSQP
+
+.. image:: https://travis-ci.org/goulart-paul/osqp-r.svg?branch=master
+    :target: https://travis-ci.org/goulart-paul/osqp-r
+
+.. image:: https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master?svg=true
+    :target: https://ci.appveyor.com/project/goulart-paul/osqp-r/
 
 Provides R-bindings to the [OSQP-solver](http://osqp.readthedocs.io/)
 
