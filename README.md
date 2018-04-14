@@ -1,8 +1,8 @@
 # R interface for OSQP
 
-[![Build Status](https://travis-ci.org/goulart-paul/osqp-r)](https://travis-ci.org/goulart-paul/osqp-r.svg?branch=master)
-[![Build Status](https://ci.appveyor.com/project/goulart-paul/osqp-r/)](https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master?svg=true)
-  
+[![Build Status](https://travis-ci.org/goulart-paul/osqp-r.svg?branch=master)](https://travis-ci.org/goulart-paul/osqp-r)
+[![Build Status](https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master?svg=true)](https://ci.appveyor.com/project/goulart-paul/osqp-r/)
+
 Provides R-bindings to the [OSQP-solver](http://osqp.readthedocs.io/)
 
 OSQP is a sparse Quadratic Programming Solver suitable for large problems.
