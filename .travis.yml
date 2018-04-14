@@ -20,6 +20,9 @@ R_binary_packages:
   - Matrix
   - R6
 
+  # dump the R install check log
+after_script:  cat ${RCHECK_DIR}/00check.log
+
 matrix:
   include:
     - os: osx
