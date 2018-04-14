@@ -22,6 +22,7 @@ if hash cmake 2>/dev/null; then
 	cd ..
 	rm -rf build/
 	cd ../../
+	
 	echo "-- Built libosqpstatic.a"
 
 else
