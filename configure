@@ -17,7 +17,7 @@ if hash cmake 2>/dev/null; then
 
 	mkdir -p build
 	cd build
-	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../osqp/ ..
+	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../osqp/ ..
 	cmake --build . --target install
 	cd ..
 	rm -rf build/

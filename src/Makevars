@@ -28,6 +28,11 @@ $(OSQP_STATIC_LIB):
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 
+		ls
+		find ./ -name libosqpstatic.a
+		ls osqp
+		ls osqp/lib
+
 		(cd $(OSQP_DIR) && \
 		$(MAKE) CC="$(CC)" \
 		OSQP_FLAGS="$(OSQP_FLAGS)" \
