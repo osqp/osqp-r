@@ -1,7 +1,7 @@
 # R interface for OSQP
 
 [![Build Status](https://travis-ci.org/goulart-paul/osqp-r.svg?branch=master)](https://travis-ci.org/goulart-paul/osqp-r)
-[![Build Status](https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master?svg=true)](https://ci.appveyor.com/project/goulart-paul/osqp-r/)
+[![Build status](https://ci.appveyor.com/api/projects/status/o0dx1gkjafqcy027?svg=true)](https://ci.appveyor.com/project/goulart-paul/osqp-r)
 
 Provides R-bindings to the [OSQP-solver](http://osqp.readthedocs.io/)
 
