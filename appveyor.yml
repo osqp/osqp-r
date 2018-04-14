@@ -16,11 +16,11 @@ cache:
 
 # Adapt as necessary starting from here
 
-platform: x64
+# platform: i386
 
 environment:
-  R_ARCH: x64
-  GCC_PATH: mingw_64
+  # R_ARCH: x64
+  GCC_PATH: mingw_32
 
   global:
     WARNINGS_ARE_ERRORS: 1
