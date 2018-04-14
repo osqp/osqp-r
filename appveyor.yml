@@ -20,7 +20,6 @@ platform: x64
 
 environment:
   R_ARCH: x64
-  GCC_PATH: mingw_32
 
   global:
     WARNINGS_ARE_ERRORS: 1
