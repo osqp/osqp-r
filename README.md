@@ -56,7 +56,7 @@ If you would like to install the latest version and do not have access to git on
 ```{r}
 install.packages("remotes")
 remotes::install_github("r-lib/remotes#103")
-remotes::install_git("git://github.com/goulart-paul/osqp-r",submodules = TRUE)
+remotes::install_git("git://github.com/OxfordControl/osqp-r",submodules = TRUE)
 ```
 
 Note that the second line above is necessary because the "remotes" package in R does not currently support recursive cloning of git submodules.
