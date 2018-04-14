@@ -37,7 +37,7 @@ print(res$x)
 
 ### Installation
 
-A pre-compiled version of OSQP-R interface can be installed directly from within R.   Note that this will install the interface from the current CRAN repository, which may not be the most up-to-date version.
+A pre-compiled version of the OSQP-R interface can be installed directly from within R.   Note that this will install the OSQP interface from the current CRAN repository, which may not be the most up-to-date version:
 
 ```{r}
 install.packages("rosqp")
