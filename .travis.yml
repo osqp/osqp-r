@@ -21,7 +21,7 @@ R_binary_packages:
   - R6
 
   # dump the R install check log
-after_script:  cat ${RCHECK_DIR}/00check.log
+after_script:  cat ${RCHECK_DIR}/00install.out
 
 matrix:
   include:
