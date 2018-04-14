@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/oxfordcontrol/osqp-r.svg?branch=master)](https://travis-ci.org/oxfordcontrol/osqp-r)
 [![Build status](https://ci.appveyor.com/api/projects/status/bx1navxa474nhlpd/branch/master?svg=true)](https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master)
-[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/remotes)](https://www.r-pkg.org/pkg/rosqp)
+[![](https://www.r-pkg.org/badges/version/rosqp)](https://www.r-pkg.org/pkg/rosqp)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/rosqp)](https://www.r-pkg.org/pkg/rosqp)
 
 Provides R-bindings to the [OSQP-solver](http://osqp.readthedocs.io/)
 
