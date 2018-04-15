@@ -2,9 +2,8 @@ language: r
 r:
   - release
   - oldrel
-  - 3.5.0
 
-# cache: packages
+cache: packages
 
 os:
   - linux
@@ -37,10 +36,4 @@ matrix:
       disable_homebrew: true
     - os: osx
       r: oldrel
-      disable_homebrew: false
-    - os: osx
-      r: 3.5.0
-      disable_homebrew:	true
-    - os: osx
-      r: 3.5.0
       disable_homebrew: false
