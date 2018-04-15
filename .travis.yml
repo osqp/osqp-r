@@ -4,7 +4,7 @@ r:
   - oldrel
   - 3.5.0
 
-cache: packages
+# cache: packages
 
 os:
   - linux
