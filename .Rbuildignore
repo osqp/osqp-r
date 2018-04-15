@@ -10,6 +10,9 @@ cmake_install.cmake$
 osqp-targets.cmake$
 osqp-config.cmake$
 out
+osqp/lib$
+osqp/include$
+osqp_configure.h
 CMakeDirectoryInformation.cmake
 ^.*\\.o$
 ^.*\\.gz$

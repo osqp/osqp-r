@@ -2,6 +2,7 @@ language: r
 r:
   - release
   - oldrel
+  - 3.5.0
 
 cache: packages
 
