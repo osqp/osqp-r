@@ -12,7 +12,7 @@ osqp-config.cmake$
 out
 osqp/lib$
 osqp/include$
-osqp_configure.h
+osqp_configure.h$
 CMakeDirectoryInformation.cmake
 ^.*\\.o$
 ^.*\\.gz$
