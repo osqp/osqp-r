@@ -10,7 +10,7 @@ R interface for OSQP
 .. image:: https://cranlogs.r-pkg.org/badges/rosqp
     :target: https://www.r-pkg.org/pkg/rosqp
 
-Provides R-bindings to the `OSQP <http://osqp.readthedocs.io/>`__: the Operator
+Provides R-bindings to `OSQP <http://osqp.readthedocs.io/>`__: the Operator
 Splitting QP Solver.
 
 The OSQP (Operator Splitting Quadratic Program) solver is a numerical
@@ -27,7 +27,7 @@ is defined by a positive semidefinite matrix ``P in S^n_+`` and vector
 ``q in R^n``. The linear constraints are defined by matrix
 ``A in R^{m x n}`` and vectors ``l in R^m U {-inf}^m``,
 ``u in R^m U {+inf}^m``.
-	     
+
 
 Documentation
 -------------
