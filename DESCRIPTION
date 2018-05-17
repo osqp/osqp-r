@@ -24,3 +24,4 @@ NeedsCompilation: yes
 Packaged: 2018-02-06 20:32:49 UTC; hh
 Maintainer: Paul Goulart <paul.goulart@eng.ox.ac.uk>
 Date/Publication: 2018-02-07 13:10:50 UTC
+Suggests: testthat
