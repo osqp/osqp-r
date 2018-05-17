@@ -38,47 +38,30 @@
 #' An R6-object of class "osqp_model" with methods defined which can be further
 #' used to solve the problem with updated settings / parameters.
 #' @examples
-#' Lasso example
-#' library(osqp)
+#' ## example, adapted from OSQP documentation
 #' library(Matrix)
-#' set.seed(1)
-#' n <- 10
-#' m <- 20
-#' Ad <- matrix(0, m, n)
-#' Ad[sample(n * m, n * m / 2, FALSE)] <- runif(n * m / 2)
-#' x_true <- (runif(n) > 0.8) * runif(n) / sqrt(n)
-#' b <- drop(Ad %*% x_true) + 0.5 * runif(m)
-#' gammas <- seq(1, 10, length.out = 11)
 #'
-#' # OSQP data
-#' P <- .sparseDiagonal(2 * n + m, c(numeric(n), rep_len(1, m), numeric(n)))
-#' q <- numeric(2 * n + m);
-#' A <- rbind(cbind(Ad,
-#'                 -Diagonal(m),
-#'                 sparseMatrix(numeric(), numeric(), x = numeric(), dims = c(m, n))),
-#'           cbind(Diagonal(n),
-#'                 sparseMatrix(numeric(), numeric(), x = numeric(), dims = c(n, m)),
-#'                 -Diagonal(n)),
-#'           cbind(Diagonal(n),
-#'                 sparseMatrix(numeric(), numeric(), x = numeric(), dims = c(n, m)),
-#'                 Diagonal(n))
-#'           )
-#' l <- c(b, rep_len(-Inf, n), numeric(n))
-#' u <- c(b, numeric(n), rep_len(Inf, n))
+#' P <- Matrix(c(11., 0.,
+#'               0., 0.), 2, 2, sparse = TRUE)
+#' q <- c(3., 4.)
+#' A <- Matrix(c(-1., 0., -1., 2., 3.,
+#'               0., -1., -3., 5., 4.)
+#'               , 5, 2, sparse = TRUE)
+#' u <- c(0., 0., -15., 100., 80)
+#' l <- rep_len(-Inf, 5)
 #'
-#' settings <- osqpSettings(verbose = TRUE)
+#' settings <- osqpSettings(verbose = FALSE)
 #'
-#' # Create OSQP model
-#' model <- osqp(P, q, A, l, u, settings)
+#' # Solve
+#' res <- model$Solve()
 #'
-#' # Solve for entire pareto frontier
-#' res <- sapply(gammas, function(gamma) {
-#'   q_new <- c(numeric(n + m), rep_len(gamma, n))
-#'   model$Update(q = q_new)
-#'   res = model$Solve()
-#'   res$x
-#' })
-
+#' # Define new vector
+#' q_new <- c(10., 20.)
+#'
+#' # Update model and solve again
+#' model$Update(q = q_new)
+#' res <- model$Solve()
+#'
 #' @export
 osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
 

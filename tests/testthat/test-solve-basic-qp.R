@@ -12,7 +12,7 @@ define_simple_qp <- function(){
     u <- c(0., 0., -15., 100., 80)
     l <- rep_len(-Inf, 5)
 
-    settings <- osqpSettings(verbose = TRUE,
+    settings <- osqpSettings(verbose = FALSE,
                              eps_rel = 1e-09,
                              eps_abs = 1e-09)
 
@@ -28,12 +28,12 @@ test_that("Solve basic QP", {
     # Create OSQP model
     model <- define_simple_qp()
 
-    # Solve for entire pareto frontier
+    # Solve
     res <- model$Solve()
 
-    expect_equal(res$x, c(0., 5.), 1e-04)
-    expect_equal(res$y, c(1.66666, 0., 1.3333, 0., 0.), 1e-04)
-    expect_equal(res$info$obj_val, 20., 1e-04)
+    expect_equal(res$x, c(0., 5.), 1e-03)
+    expect_equal(res$y, c(1.66666, 0., 1.3333, 0., 0.), 1e-03)
+    expect_equal(res$info$obj_val, 20., 1e-03)
 
 })
 
@@ -42,7 +42,7 @@ test_that("Update basic QP", {
     # Create OSQP model
     model <- define_simple_qp()
 
-    # Solve for entire pareto frontier
+    # Solve
     res <- model$Solve()
 
     # Define new vector
@@ -52,8 +52,8 @@ test_that("Update basic QP", {
     model$Update(q = q_new)
     res <- model$Solve()
 
-    expect_equal(res$x, c(0., 5.), 1e-04)
-    expect_equal(res$y, c(3.333, 0., 6.666, 0., 0.), 1e-04)
-    expect_equal(res$info$obj_val, 100., 1e-04)
+    expect_equal(res$x, c(0., 5.), 1e-03)
+    expect_equal(res$y, c(3.333, 0., 6.666, 0., 0.), 1e-03)
+    expect_equal(res$info$obj_val, 100., 1e-03)
 
 })
