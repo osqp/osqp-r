@@ -15,7 +15,7 @@ solve_osqp(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL,
 \item{pars}{list with optimization parameters, conveniently set with the function \code{osqpSettings}}
 }
 \value{
-A list with elements x (the primal solution), y (the dual solution), prim_inf_cert, 
+A list with elements x (the primal solution), y (the dual solution), prim_inf_cert,
 dual_inf_cert, and info.
 }
 \description{
@@ -24,7 +24,7 @@ s.t. \deqn{l_i < (A x)_i < u_i}{li < (A x)i < ui}
 for real matrices P (nxn, positive semidefinite) and A (mxn) with m number of constraints
 }
 \examples{
-library(rosqp)
+library(osqp)
 ## example, adapted from ?quadprog::solve.QP
 Dmat       <- diag(3)
 dvec       <- c(0,-5,0)

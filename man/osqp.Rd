@@ -12,21 +12,21 @@ osqp(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL,
 
 \item{q, l, u}{Numeric vectors, with possibly infinite elements in l and u}
 
-\item{pars}{list with optimization parameters, conveniently set with the function 
-\code{\link{osqpSettings}}. For \code{osqpObject$UpdateSettings(newPars)} only a subset of the settings 
+\item{pars}{list with optimization parameters, conveniently set with the function
+\code{\link{osqpSettings}}. For \code{osqpObject$UpdateSettings(newPars)} only a subset of the settings
 can be updated once the problem has been initnialized.}
 }
 \value{
-An R6-object of class "rosqp_model" with methods defined which can be further 
+An R6-object of class "osqp_model" with methods defined which can be further
 used to solve the problem with updated settings / parameters.
 }
 \description{
 OSQP Solver object
 }
 \details{
-Allows one to solve a parametric 
+Allows one to solve a parametric
 problem with for example warm starts between updates of the parameter, c.f. the examples.
-The object returned by \code{osqp} contains several methods which can be used to either update/get details of the 
+The object returned by \code{osqp} contains several methods which can be used to either update/get details of the
 problem, modify the optimization settings or attempt to solve the problem.
 }
 \section{Usage}{
@@ -55,9 +55,9 @@ print(model)
 }
 
 \examples{
-## example, adapted from the osqp documentation 
+## example, adapted from the osqp documentation
 \dontrun{
-library(rosqp)
+library(osqp)
 library(Matrix)
 set.seed(1)
 n = 10
@@ -71,14 +71,14 @@ gammas = seq(1, 10, length.out = 11)
 # \% OSQP data
 P = .sparseDiagonal(2*n+m, c(numeric(n), rep_len(1, m), numeric(n)))
 q = numeric(2*n+m);
-A = rbind(cbind(Ad, 
-                -Diagonal(m), 
+A = rbind(cbind(Ad,
+                -Diagonal(m),
                 sparseMatrix(numeric(), numeric(), x=numeric(), dims=c(m, n))),
-          cbind(Diagonal(n), 
-                sparseMatrix(numeric(), numeric(), x=numeric(), dims=c(n, m)), 
+          cbind(Diagonal(n),
+                sparseMatrix(numeric(), numeric(), x=numeric(), dims=c(n, m)),
                 -Diagonal(n)),
-          cbind(Diagonal(n), 
-                sparseMatrix(numeric(), numeric(), x=numeric(), dims=c(n, m)), 
+          cbind(Diagonal(n),
+                sparseMatrix(numeric(), numeric(), x=numeric(), dims=c(n, m)),
                 Diagonal(n))
           )
 l = c(b, rep_len(-Inf, n), numeric(n))

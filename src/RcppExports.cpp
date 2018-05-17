@@ -5,9 +5,9 @@
 
 using namespace Rcpp;
 
-// rosqpSetup
-SEXP rosqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars);
-RcppExport SEXP _rosqp_rosqpSetup(SEXP PSEXP, SEXP qSEXP, SEXP ASEXP, SEXP lSEXP, SEXP uSEXP, SEXP parsSEXP) {
+// osqpSetup
+SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars);
+RcppExport SEXP _osqp_osqpSetup(SEXP PSEXP, SEXP qSEXP, SEXP ASEXP, SEXP lSEXP, SEXP uSEXP, SEXP parsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -17,106 +17,106 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const NumericVector& >::type l(lSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type u(uSEXP);
     Rcpp::traits::input_parameter< const List& >::type pars(parsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rosqpSetup(P, q, A, l, u, pars));
+    rcpp_result_gen = Rcpp::wrap(osqpSetup(P, q, A, l, u, pars));
     return rcpp_result_gen;
 END_RCPP
 }
-// rosqpSolve
-List rosqpSolve(SEXP workPtr);
-RcppExport SEXP _rosqp_rosqpSolve(SEXP workPtrSEXP) {
+// osqpSolve
+List osqpSolve(SEXP workPtr);
+RcppExport SEXP _osqp_osqpSolve(SEXP workPtrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
-    rcpp_result_gen = Rcpp::wrap(rosqpSolve(workPtr));
+    rcpp_result_gen = Rcpp::wrap(osqpSolve(workPtr));
     return rcpp_result_gen;
 END_RCPP
 }
-// rosqpGetParams
-List rosqpGetParams(SEXP workPtr);
-RcppExport SEXP _rosqp_rosqpGetParams(SEXP workPtrSEXP) {
+// osqpGetParams
+List osqpGetParams(SEXP workPtr);
+RcppExport SEXP _osqp_osqpGetParams(SEXP workPtrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
-    rcpp_result_gen = Rcpp::wrap(rosqpGetParams(workPtr));
+    rcpp_result_gen = Rcpp::wrap(osqpGetParams(workPtr));
     return rcpp_result_gen;
 END_RCPP
 }
-// rosqpGetDims
-IntegerVector rosqpGetDims(SEXP workPtr);
-RcppExport SEXP _rosqp_rosqpGetDims(SEXP workPtrSEXP) {
+// osqpGetDims
+IntegerVector osqpGetDims(SEXP workPtr);
+RcppExport SEXP _osqp_osqpGetDims(SEXP workPtrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
-    rcpp_result_gen = Rcpp::wrap(rosqpGetDims(workPtr));
+    rcpp_result_gen = Rcpp::wrap(osqpGetDims(workPtr));
     return rcpp_result_gen;
 END_RCPP
 }
-// rosqpUpdate
-void rosqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new);
-RcppExport SEXP _rosqp_rosqpUpdate(SEXP workPtrSEXP, SEXP q_newSEXP, SEXP l_newSEXP, SEXP u_newSEXP) {
+// osqpUpdate
+void osqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new);
+RcppExport SEXP _osqp_osqpUpdate(SEXP workPtrSEXP, SEXP q_newSEXP, SEXP l_newSEXP, SEXP u_newSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type q_new(q_newSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type l_new(l_newSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type u_new(u_newSEXP);
-    rosqpUpdate(workPtr, q_new, l_new, u_new);
+    osqpUpdate(workPtr, q_new, l_new, u_new);
     return R_NilValue;
 END_RCPP
 }
-// rosqpUpdateSettings
-void rosqpUpdateSettings(SEXP workPtr, SEXP val, std::string nm);
-RcppExport SEXP _rosqp_rosqpUpdateSettings(SEXP workPtrSEXP, SEXP valSEXP, SEXP nmSEXP) {
+// osqpUpdateSettings
+void osqpUpdateSettings(SEXP workPtr, SEXP val, std::string nm);
+RcppExport SEXP _osqp_osqpUpdateSettings(SEXP workPtrSEXP, SEXP valSEXP, SEXP nmSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
     Rcpp::traits::input_parameter< SEXP >::type val(valSEXP);
     Rcpp::traits::input_parameter< std::string >::type nm(nmSEXP);
-    rosqpUpdateSettings(workPtr, val, nm);
+    osqpUpdateSettings(workPtr, val, nm);
     return R_NilValue;
 END_RCPP
 }
-// rosqpGetData
-SEXP rosqpGetData(SEXP workPtr, std::string nm);
-RcppExport SEXP _rosqp_rosqpGetData(SEXP workPtrSEXP, SEXP nmSEXP) {
+// osqpGetData
+SEXP osqpGetData(SEXP workPtr, std::string nm);
+RcppExport SEXP _osqp_osqpGetData(SEXP workPtrSEXP, SEXP nmSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
     Rcpp::traits::input_parameter< std::string >::type nm(nmSEXP);
-    rcpp_result_gen = Rcpp::wrap(rosqpGetData(workPtr, nm));
+    rcpp_result_gen = Rcpp::wrap(osqpGetData(workPtr, nm));
     return rcpp_result_gen;
 END_RCPP
 }
-// rosqpWarmStart
-void rosqpWarmStart(SEXP workPtr, Rcpp::Nullable<NumericVector> x, Rcpp::Nullable<NumericVector> y);
-RcppExport SEXP _rosqp_rosqpWarmStart(SEXP workPtrSEXP, SEXP xSEXP, SEXP ySEXP) {
+// osqpWarmStart
+void osqpWarmStart(SEXP workPtr, Rcpp::Nullable<NumericVector> x, Rcpp::Nullable<NumericVector> y);
+RcppExport SEXP _osqp_osqpWarmStart(SEXP workPtrSEXP, SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type x(xSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type y(ySEXP);
-    rosqpWarmStart(workPtr, x, y);
+    osqpWarmStart(workPtr, x, y);
     return R_NilValue;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rosqp_rosqpSetup", (DL_FUNC) &_rosqp_rosqpSetup, 6},
-    {"_rosqp_rosqpSolve", (DL_FUNC) &_rosqp_rosqpSolve, 1},
-    {"_rosqp_rosqpGetParams", (DL_FUNC) &_rosqp_rosqpGetParams, 1},
-    {"_rosqp_rosqpGetDims", (DL_FUNC) &_rosqp_rosqpGetDims, 1},
-    {"_rosqp_rosqpUpdate", (DL_FUNC) &_rosqp_rosqpUpdate, 4},
-    {"_rosqp_rosqpUpdateSettings", (DL_FUNC) &_rosqp_rosqpUpdateSettings, 3},
-    {"_rosqp_rosqpGetData", (DL_FUNC) &_rosqp_rosqpGetData, 2},
-    {"_rosqp_rosqpWarmStart", (DL_FUNC) &_rosqp_rosqpWarmStart, 3},
+    {"_osqp_osqpSetup", (DL_FUNC) &_osqp_osqpSetup, 6},
+    {"_osqp_osqpSolve", (DL_FUNC) &_osqp_osqpSolve, 1},
+    {"_osqp_osqpGetParams", (DL_FUNC) &_osqp_osqpGetParams, 1},
+    {"_osqp_osqpGetDims", (DL_FUNC) &_osqp_osqpGetDims, 1},
+    {"_osqp_osqpUpdate", (DL_FUNC) &_osqp_osqpUpdate, 4},
+    {"_osqp_osqpUpdateSettings", (DL_FUNC) &_osqp_osqpUpdateSettings, 3},
+    {"_osqp_osqpGetData", (DL_FUNC) &_osqp_osqpGetData, 2},
+    {"_osqp_osqpWarmStart", (DL_FUNC) &_osqp_osqpWarmStart, 3},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_rosqp(DllInfo *dll) {
+RcppExport void R_init_osqp(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

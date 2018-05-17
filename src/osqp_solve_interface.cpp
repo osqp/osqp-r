@@ -21,7 +21,7 @@ S4 toDgCMat(csc*);
 
 
 // [[Rcpp::export]]
-SEXP rosqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars)
+SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars)
 {
 
 
@@ -69,7 +69,7 @@ SEXP rosqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericV
 
 
 // [[Rcpp::export]]
-List rosqpSolve(SEXP workPtr)
+List osqpSolve(SEXP workPtr)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
   c_int n = work->data->n;
@@ -117,7 +117,7 @@ List rosqpSolve(SEXP workPtr)
 }
 
 // [[Rcpp::export]]
-List rosqpGetParams(SEXP workPtr)
+List osqpGetParams(SEXP workPtr)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
   IntegerVector linsys;
@@ -157,7 +157,7 @@ List rosqpGetParams(SEXP workPtr)
 
 
 // [[Rcpp::export]]
-IntegerVector rosqpGetDims(SEXP workPtr)
+IntegerVector osqpGetDims(SEXP workPtr)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
   auto res = IntegerVector::create(_("n") = work->data->n,
@@ -167,7 +167,7 @@ IntegerVector rosqpGetDims(SEXP workPtr)
   return res;
 }
 // [[Rcpp::export]]
-void rosqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new)
+void osqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
 
@@ -261,7 +261,7 @@ void translateSettings(OSQPSettings* settings, const List& pars)
 }
 
 // [[Rcpp::export]]
-void rosqpUpdateSettings(SEXP workPtr, SEXP val, std::string nm)
+void osqpUpdateSettings(SEXP workPtr, SEXP val, std::string nm)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
 
@@ -299,7 +299,7 @@ void rosqpUpdateSettings(SEXP workPtr, SEXP val, std::string nm)
 }
 
 // [[Rcpp::export]]
-SEXP rosqpGetData(SEXP workPtr, std::string nm)
+SEXP osqpGetData(SEXP workPtr, std::string nm)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
 
@@ -361,7 +361,7 @@ void mycleanup (OSQPWorkspace* x)
 
 
 // [[Rcpp::export]]
-void rosqpWarmStart(SEXP workPtr, Rcpp::Nullable<NumericVector> x, Rcpp::Nullable<NumericVector> y)
+void osqpWarmStart(SEXP workPtr, Rcpp::Nullable<NumericVector> x, Rcpp::Nullable<NumericVector> y)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
 

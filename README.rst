@@ -5,10 +5,10 @@ R interface for OSQP
     :target: https://travis-ci.org/oxfordcontrol/osqp-r
 .. image:: https://ci.appveyor.com/api/projects/status/bx1navxa474nhlpd/branch/master?svg=true
     :target: https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master
-.. image:: https://www.r-pkg.org/badges/version/rosqp
-    :target: https://www.r-pkg.org/pkg/rosqp
-.. image:: https://cranlogs.r-pkg.org/badges/rosqp
-    :target: https://www.r-pkg.org/pkg/rosqp
+.. image:: https://www.r-pkg.org/badges/version/osqp
+    :target: https://www.r-pkg.org/pkg/osqp
+.. image:: https://cranlogs.r-pkg.org/badges/osqp
+    :target: https://www.r-pkg.org/pkg/osqp
 
 Provides R-bindings to `OSQP <http://osqp.readthedocs.io/>`__: the Operator
 Splitting QP Solver.
