@@ -35,3 +35,6 @@ vignettes/*.pdf
 # Compilation outputs
 *.o
 *.so
+
+# OSX
+.DS_Store
