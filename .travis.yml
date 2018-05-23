@@ -14,11 +14,15 @@ sudo: required
 warnings_are_errors: true
 r_check_args: --as-cran
 
-R_binary_packages:
-  - Rcpp
+r_binary_packages:
   - methods
   - Matrix
   - R6
+
+# Install Rcpp via sources to avoid conflicts with
+# more recent versions
+r_packages:
+  - Rcpp
 
   # dump the R install check log
 after_script:  cat ${RCHECK_DIR}/00install.out
