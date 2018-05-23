@@ -3,7 +3,8 @@ r:
   - release
   - oldrel
 
-cache: packages
+# Avoid using packages in the cache
+# cache: packages
 
 os:
   - linux
@@ -15,16 +16,12 @@ warnings_are_errors: true
 r_check_args: --as-cran
 
 r_binary_packages:
+  - Rcpp
   - methods
   - Matrix
   - R6
 
-# Install Rcpp via sources to avoid conflicts with
-# more recent versions
-r_packages:
-  - Rcpp
-
-  # dump the R install check log
+# dump the R install check log
 after_script:  cat ${RCHECK_DIR}/00install.out
 
 matrix:
