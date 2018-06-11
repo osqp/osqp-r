@@ -4,10 +4,6 @@
 
 [![image](https://ci.appveyor.com/api/projects/status/bx1navxa474nhlpd/branch/master?svg=true)](https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master)
 
-[![image](https://www.r-pkg.org/badges/version/osqp)](https://www.r-pkg.org/pkg/osqp)
-
-[![image](https://cranlogs.r-pkg.org/badges/osqp)](https://www.r-pkg.org/pkg/osqp)
-
 Provides R-bindings to [OSQP](http://osqp.readthedocs.io/): the Operator
 Splitting QP Solver.
 
