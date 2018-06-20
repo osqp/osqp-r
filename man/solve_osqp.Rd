@@ -44,5 +44,5 @@ Stellato, B., Banjac, G., Goulart, P., Bemporad, A., Boyd and S. (2017).
 1711.08013.}
 }
 \seealso{
-\code{\link{osqp}}. The underlying OSQP documentation: \url{http://osqp.readthedocs.io/}
+\code{\link{osqp}}. The underlying OSQP documentation: \url{https://osqp.org/}
 }

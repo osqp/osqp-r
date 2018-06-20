@@ -8,7 +8,7 @@
 #' @param pars list with optimization parameters, conveniently set with the function \code{osqpSettings}
 #' @return A list with elements x (the primal solution), y (the dual solution), prim_inf_cert,
 #' dual_inf_cert, and info.
-#' @seealso \code{\link{osqp}}. The underlying OSQP documentation: \url{http://osqp.readthedocs.io/}
+#' @seealso \code{\link{osqp}}. The underlying OSQP documentation: \url{https://osqp.org/}
 #' @examples
 #' library(osqp)
 #' ## example, adapted from OSQP documentation

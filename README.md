@@ -4,7 +4,7 @@
 
 [![image](https://ci.appveyor.com/api/projects/status/bx1navxa474nhlpd/branch/master?svg=true)](https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master)
 
-Provides R-bindings to [OSQP](http://osqp.readthedocs.io/): the Operator
+Provides R-bindings to [OSQP](https://osqp.org/): the Operator
 Splitting QP Solver.
 
 The OSQP (Operator Splitting Quadratic Program) solver is a numerical
@@ -22,4 +22,4 @@ defined by a positive semidefinite matrix `P in S^n_+` and vector
 
 ## Documentation
 
-The interface is documented [here](http://osqp.readthedocs.io/).
+The interface is documented [here](https://osqp.org/).

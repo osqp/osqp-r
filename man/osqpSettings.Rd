@@ -57,6 +57,6 @@ osqpSettings(rho = 0.1, sigma = 1e-06, max_iter = 4000L,
 \item{adaptive_rho_fraction}{Interval for adapting rho (fraction of the setup time)}
 }
 \description{
-For further details please consult the OSQP documentation: 
-\url{https://osqp.readthedocs.io/}
+For further details please consult the OSQP documentation:
+\url{https://osqp.org/}
 }
