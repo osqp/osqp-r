@@ -18,3 +18,4 @@ CMakeDirectoryInformation.cmake
 ^.*\\.gz$
 libosqpstatic.a
 ^appveyor\.yml$
+^cran_comments.md

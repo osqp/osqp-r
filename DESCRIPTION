@@ -2,7 +2,7 @@ Package: osqp
 Type: Package
 Title: Quadratic Programming Solver using the 'OSQP' Library
 Version: 0.3.1
-Date: 2018-5-11
+Date: 2018-6-25
 Author: c(person("Eric", "Anderson", email="anderic1@gmx.com", role=c("aut", "cre")),
     person("Bartolomeo", "Stellato", role = c("ctb", "cph"), comment="OSQP"),
     person("Goran", "Banjac", role = c("ctb", "cph"), comment="OSQP"),
@@ -14,14 +14,14 @@ Author: c(person("Eric", "Anderson", email="anderic1@gmx.com", role=c("aut", "cr
     person("John K.", "Reid", role = c("ctb", "cph"), comment=c("SuiteSparse AMD")))
 Copyright: file COPYRIGHT
 Description: Provides bindings to the 'OSQP' solver, which can solve sparse convex quadratic programming problems with optional equality and inequality constraints.
-License: file LICENSE
+License: Apache License 2.0 | file LICENSE
 Imports: Rcpp (>= 0.12.14), methods, Matrix, R6
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1
 Collate: 'RcppExports.R' 'osqp-package.R' 'solve.R' 'osqp.R'
         'params.R'
 NeedsCompilation: yes
-Packaged: 2018-05-11 20:32:49 UTC; hh
-Maintainer: Paul Goulart <paul.goulart@eng.ox.ac.uk>
+Packaged: 2018-06-25 20:32:49 UTC
+Maintainer: Bartolomeo Stellato <bartolomeo.stellato@gmail.com>
 Date/Publication: 2018-05-11 13:10:50 UTC
 Suggests: testthat
