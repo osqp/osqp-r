@@ -3,6 +3,7 @@ osqp_sources/CMakeFiles$
 osqp_sources/lin_sys/direct/CMakeFiles$
 osqp_sources/CMakeCache.txt$
 osqp_sources/\.bumpversion.cfg$
+osqp_sources/\.editorconfig$
 osqp_sources/\.git
 osqp_sources/\.travis\.yml
 cmake_uninstall.cmake$
@@ -18,4 +19,4 @@ CMakeDirectoryInformation.cmake
 ^.*\\.gz$
 libosqpstatic.a
 ^appveyor\.yml$
-^cran_comments.md
+^cran_comments\.md$
