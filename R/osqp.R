@@ -52,6 +52,8 @@
 #'
 #' settings <- osqpSettings(verbose = FALSE)
 #'
+#' model <- osqp(P, q, A, l, u, settings)
+#'
 #' # Solve
 #' res <- model$Solve()
 #'

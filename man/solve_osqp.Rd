@@ -25,20 +25,28 @@ for real matrices P (nxn, positive semidefinite) and A (mxn) with m number of co
 }
 \examples{
 library(osqp)
-## example, adapted from ?quadprog::solve.QP
-Dmat       <- diag(3)
-dvec       <- c(0,-5,0)
-Amat       <- matrix(c(-4, 2, 0, -3, 1, -2, 0, 0, 1),3,3)
-bvec       <- c(-8,2,0)
-res = solve_osqp(Dmat, dvec, Amat, bvec)
-print(res$x)
+## example, adapted from OSQP documentation
+library(Matrix)
 
+P <- Matrix(c(11., 0.,
+              0., 0.), 2, 2, sparse = TRUE)
+q <- c(3., 4.)
+A <- Matrix(c(-1., 0., -1., 2., 3.,
+              0., -1., -3., 5., 4.)
+              , 5, 2, sparse = TRUE)
+u <- c(0., 0., -15., 100., 80)
+l <- rep_len(-Inf, 5)
 
+settings <- osqpSettings(verbose = TRUE)
+
+# Solve with OSQP
+res <- solve_osqp(P, q, A, l, u, settings)
+res$x
 
 }
 \references{
 {
-Stellato, B., Banjac, G., Goulart, P., Bemporad, A., Boyd and S. (2017).
+Stellato, B., Banjac, G., Goulart, P., Bemporad, A., Boyd and S. (2018).
 ``OSQP: An Operator Splitting Solver for Quadratic Programs.''
 \emph{ArXiv e-prints}.
 1711.08013.}
