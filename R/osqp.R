@@ -125,7 +125,7 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
                 stopifnot(length(q) %in% c(0, dims[[1]]),
                           length(l) %in% c(0, dims[[2]]),
                           length(u) %in% c(0, dims[[2]]))
-                osqpUpdate(private$.work, q, u, l)
+                osqpUpdate(private$.work, q, l, u)
               },
               GetParams = function() osqpGetParams(private$.work),
               GetDims = function() osqpGetDims(private$.work),
