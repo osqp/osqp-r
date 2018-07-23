@@ -37,7 +37,7 @@ $(OSQP_SRC_DIR)/src/proj.c    \
 $(OSQP_SRC_DIR)/src/scaling.c \
 $(OSQP_SRC_DIR)/src/util.c    \
 $(OSQP_SRC_DIR)/lin_sys/lib_handler.c         \
-$(PARDISO_DIR)/pardiso.c   \
+$(PARDISO_DIR)/pardiso_interface.c   \
 $(PARDISO_DIR)/pardiso_loader.c           \
 $(QDLDL_DIR)/amd/src/SuiteSparse_config.c   \
 $(QDLDL_DIR)/amd/src/amd_1.c            \
