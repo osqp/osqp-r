@@ -7,8 +7,8 @@ OSQP_SRC_DIR=../osqp_sources/
 OSQP_SRC_INCLUDE_DIR=$(OSQP_SRC_DIR)/include
 OSQP_SRC_CONFIGURE_H=$(OSQP_SRC_INCLUDE_DIR)/osqp_configure.h
 
-PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso/
-QDLDL_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/qdldl/
+PARDISO_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/pardiso
+QDLDL_DIR=$(OSQP_SRC_DIR)/lin_sys/direct/qdldl
 QDLDL_RCONFIG_DEFAULT_INCLUDE=../qdldl_types_R.h
 QDLDL_SRC_CONFIGURE_H=$(QDLDL_DIR)/qdldl_sources/include/qdldl_types.h
 
@@ -51,8 +51,8 @@ $(QDLDL_DIR)/amd/src/amd_post_tree.c    \
 $(QDLDL_DIR)/amd/src/amd_postorder.c    \
 $(QDLDL_DIR)/amd/src/amd_preprocess.c   \
 $(QDLDL_DIR)/amd/src/amd_valid.c        \
-$(QDLDL_DIR)/qdldl/qdldl_interface.c \
-$(QDLDL_DIR)/qdldl/qdldl_sources/src/qdldl.c
+$(QDLDL_DIR)/qdldl_interface.c \
+$(QDLDL_DIR)/qdldl_sources/src/qdldl.c
 
 OSQP_OBJECTS = $(OSQP_SOURCES:.c=.o)
 
