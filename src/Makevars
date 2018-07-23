@@ -1,7 +1,7 @@
 OSQP_DIR=./osqp
 OSQP_LIB_DIR=$(OSQP_DIR)/lib
 OSQP_INCLUDE_DIR=$(OSQP_DIR)/include/osqp
-OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqpstatic.a
+OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqp.a
 
 OSQP_FLAGS=-DR_LANG=TRUE
 

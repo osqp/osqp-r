@@ -12,7 +12,7 @@ set -x
 
 if hash cmake 2>/dev/null; then
 
-	echo "-- Trying to build libosqpstatic.a via cmake ..."
+	echo "-- Trying to build libosqp.a via cmake ..."
 	cd src/osqp_sources
 
 	mkdir -p build
@@ -22,9 +22,9 @@ if hash cmake 2>/dev/null; then
 	cd ..
 	rm -rf build/
 	cd ../../
-	
-	echo "-- Built libosqpstatic.a"
+
+	echo "-- Built libosqp.a"
 
 else
-	echo "-- No cmake, so I will try to make libosqpstatic.a via R Makevars instead"
+	echo "-- No cmake, so I will try to make libosqp.a via R Makevars instead"
 fi

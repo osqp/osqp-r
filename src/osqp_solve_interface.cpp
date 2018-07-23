@@ -121,8 +121,8 @@ List osqpGetParams(SEXP workPtr)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
   IntegerVector linsys;
-  if (work->settings->linsys_solver == SUITESPARSE_LDL_SOLVER)
-    linsys = IntegerVector::create(_("SUITESPARSE_LDL_SOLVER") = work->settings->linsys_solver);
+  if (work->settings->linsys_solver == QDLDL_SOLVER)
+    linsys = IntegerVector::create(_("QDLDL_SOLVER") = work->settings->linsys_solver);
   else if (work->settings->linsys_solver == MKL_PARDISO_SOLVER)
     linsys = IntegerVector::create(_("MKL_PARDISO_SOLVER") = work->settings->linsys_solver);
   else
