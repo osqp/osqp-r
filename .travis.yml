@@ -17,10 +17,10 @@ r_check_args: --as-cran
 
 r_binary_packages:
   - Rcpp
-  - Matrix
   - R6
 
 r_packages:
+  - Matrix
   - methods
 
 # dump the R install check log
