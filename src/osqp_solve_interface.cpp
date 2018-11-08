@@ -174,11 +174,16 @@ void osqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullabl
   if (q_new.isNotNull()) {
     osqp_update_lin_cost(work, as<NumericVector>(q_new.get()).begin());
   }
-  if (l_new.isNotNull()) {
+  if (l_new.isNotNull() & u_new.isNull()) {
     osqp_update_lower_bound(work, as<NumericVector>(l_new.get()).begin());
   }
-  if (u_new.isNotNull()) {
+  if (u_new.isNotNull() & l_new.isNull()) {
     osqp_update_upper_bound(work, as<NumericVector>(u_new.get()).begin());
+  }
+  if (u_new.isNotNull() & l_new.isNotNull()) {
+    osqp_update_bounds(work,
+        as<NumericVector>(l_new.get()).begin(),
+        as<NumericVector>(u_new.get()).begin());
   }
 }
 

@@ -57,3 +57,28 @@ test_that("Update basic QP", {
     expect_equal(res$info$obj_val, 100., 1e-03)
 
 })
+
+test_that("Update bounds QP", {
+
+    # Create OSQP model
+    model <- define_simple_qp()
+
+    # Solve
+    res <- model$Solve()
+
+    # Define new vector
+    l_new <- -100 * rep(1, 5)
+    u_new <- 1000 * rep(1, 5)
+
+    # Update model and solve again
+    model$Update(l = l_new, u = u_new)
+    res_updated <- model$Solve()
+
+    expect_equal(res_updated$x, c(-0.12727273,
+                                  -19.94909091), 1e-03)
+    expect_equal(res_updated$y, c(0., 0., 0.,
+                                  -0.8, 0.), 1e-03)
+    expect_equal(res_updated$info$obj_val,
+                 -80.0890909023583, 1e-03)
+
+})
