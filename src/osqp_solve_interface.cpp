@@ -167,10 +167,19 @@ IntegerVector osqpGetDims(SEXP workPtr)
   return res;
 }
 // [[Rcpp::export]]
-void osqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new)
+void osqpUpdate(SEXP workPtr,
+    Rcpp::Nullable<NumericVector> q_new,
+    Rcpp::Nullable<NumericVector> l_new,
+    Rcpp::Nullable<NumericVector> u_new,
+    Rcpp::Nullable<NumericVector> Px,
+    Rcpp::Nullable<IntegerVector> Px_idx,
+    Rcpp::Nullable<NumericVector> Ax,
+    Rcpp::Nullable<IntegerVector> Ax_idx,
+    )
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
 
+  // Update problem vectors
   if (q_new.isNotNull()) {
     osqp_update_lin_cost(work, as<NumericVector>(q_new.get()).begin());
   }
@@ -185,6 +194,52 @@ void osqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullabl
         as<NumericVector>(l_new.get()).begin(),
         as<NumericVector>(u_new.get()).begin());
   }
+
+
+  // Update problem matrices
+  c_int * Px_idx_ = OSQP_NULL;
+  c_int len_Px = 0;
+  c_int * Ax_idx_ = OSQP_NULL;
+  c_int len_Ax = 0;
+  // Get which parameters are null
+  if (Px_idx.isNotNull()) {
+    Px_idx_ = (c_int *)as<IntegerVector>(Px_idx.get()).begin();
+    NumericVector Px_ = Px.get();
+    len_Px = Px_.size();
+  }
+  if (Ax_idx.isNotNull()) {
+    Ax_idx_ = (c_int *)as<IntegerVector>(Ax_idx.get()).begin();
+    NumericVector Ax_ = Ax.get();
+    len_Ax = Ax_.size();
+  }
+  // Only P
+  if (Px.isNotNull() & Ax.isNull()){
+      osqp_update_P(work,
+          as<NumericVector>(Px.get()).begin(),
+          Px_idx_,
+          len_Px);
+  }
+
+  // Only A
+  if (Ax.isNotNull() & Px.isNull()){
+      osqp_update_A(work, as<NumericVector>(Ax.get()).begin(),
+                    Ax_idx_,
+                    len_Ax);
+  }
+
+  // Both A and P
+  if (Px.isNotNull() & Ax.isNotNull()){
+      osqp_update_P_A(
+          work,
+          as<NumericVector>(Px.get()).begin(),
+          Px_idx_,
+          len_Px,
+          as<NumericVector>(Ax.get()).begin(),
+          Ax_idx_,
+          len_Ax);
+  }
+
+
 }
 
 void extractMatrixData(const S4& mat, std::vector<c_int>& iout, std::vector<c_int>& pout, std::vector<c_float>& xout)

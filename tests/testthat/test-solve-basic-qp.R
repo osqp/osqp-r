@@ -82,3 +82,4 @@ test_that("Update bounds QP", {
                  -80.0890909023583, 1e-03)
 
 })
+
