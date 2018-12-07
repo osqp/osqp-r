@@ -14,7 +14,7 @@
 #' \preformatted{model = osqp(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars=osqpSettings())
 #'
 #' model$Solve()
-#' model$Update(q = NULL, l = NULL, u = NULL)
+#' model$Update(q = NULL, l = NULL, u = NULL, Px = NULL, Px_idx = NULL, Ax = NULL, Ax_idx = NULL)
 #' model$GetParams()
 #' model$GetDims()
 #' model$UpdateSettings(newPars = list())
@@ -115,17 +115,17 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
           public =
             list(
               initialize = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars=list()) {
-
-
                 private$.work = osqpSetup(P, q, A, l, u, pars)
               },
               Solve = function() osqpSolve(private$.work),
-              Update = function(q = NULL, l = NULL, u = NULL) {
+              Update = function(q = NULL, l = NULL, u = NULL,
+                                Px = NULL, Px_idx = NULL, Ax = NULL, Ax_idx = NULL) {
                 dims = osqpGetDims(private$.work)
                 stopifnot(length(q) %in% c(0, dims[[1]]),
                           length(l) %in% c(0, dims[[2]]),
-                          length(u) %in% c(0, dims[[2]]))
-                osqpUpdate(private$.work, q, l, u)
+                          length(u) %in% c(0, dims[[2]])
+                          )
+                osqpUpdate(private$.work, q, l, u, Px, Px_idx, Ax, Ax_idx)
               },
               GetParams = function() osqpGetParams(private$.work),
               GetDims = function() osqpGetDims(private$.work),
