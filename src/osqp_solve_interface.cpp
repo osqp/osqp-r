@@ -85,6 +85,7 @@ List osqpSolve(SEXP workPtr)
                       _("dua_res") = work->info->dua_res,
                       _("setup_time") = work->info->setup_time,
                       _("solve_time") = work->info->solve_time,
+                      _("update_time") = work->info->update_time,
                       _("polish_time") = work->info->polish_time,
                       _("run_time") = work->info->run_time,
                       _("rho_estimate") = work->info->rho_estimate,
