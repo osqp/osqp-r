@@ -17,8 +17,8 @@ osqpGetDims <- function(workPtr) {
     .Call(`_osqp_osqpGetDims`, workPtr)
 }
 
-osqpUpdate <- function(workPtr, q_new, l_new, u_new) {
-    invisible(.Call(`_osqp_osqpUpdate`, workPtr, q_new, l_new, u_new))
+osqpUpdate <- function(workPtr, q_new, l_new, u_new, Px, Px_idx, Ax, Ax_idx) {
+    invisible(.Call(`_osqp_osqpUpdate`, workPtr, q_new, l_new, u_new, Px, Px_idx, Ax, Ax_idx))
 }
 
 osqpUpdateSettings <- function(workPtr, val, nm) {

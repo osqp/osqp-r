@@ -17,9 +17,6 @@ S4 toDgCMat(csc*);
 //typedef Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> XPtrOsqpWork;
 
 
-
-
-
 // [[Rcpp::export]]
 SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars)
 {
@@ -174,8 +171,7 @@ void osqpUpdate(SEXP workPtr,
     Rcpp::Nullable<NumericVector> Px,
     Rcpp::Nullable<IntegerVector> Px_idx,
     Rcpp::Nullable<NumericVector> Ax,
-    Rcpp::Nullable<IntegerVector> Ax_idx,
-    )
+    Rcpp::Nullable<IntegerVector> Ax_idx)
 {
   auto work = as<Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> >(workPtr);
 

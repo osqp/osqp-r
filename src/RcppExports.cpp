@@ -55,15 +55,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // osqpUpdate
-void osqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new);
-RcppExport SEXP _osqp_osqpUpdate(SEXP workPtrSEXP, SEXP q_newSEXP, SEXP l_newSEXP, SEXP u_newSEXP) {
+void osqpUpdate(SEXP workPtr, Rcpp::Nullable<NumericVector> q_new, Rcpp::Nullable<NumericVector> l_new, Rcpp::Nullable<NumericVector> u_new, Rcpp::Nullable<NumericVector> Px, Rcpp::Nullable<IntegerVector> Px_idx, Rcpp::Nullable<NumericVector> Ax, Rcpp::Nullable<IntegerVector> Ax_idx);
+RcppExport SEXP _osqp_osqpUpdate(SEXP workPtrSEXP, SEXP q_newSEXP, SEXP l_newSEXP, SEXP u_newSEXP, SEXP PxSEXP, SEXP Px_idxSEXP, SEXP AxSEXP, SEXP Ax_idxSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type q_new(q_newSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type l_new(l_newSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type u_new(u_newSEXP);
-    osqpUpdate(workPtr, q_new, l_new, u_new);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type Px(PxSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<IntegerVector> >::type Px_idx(Px_idxSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<NumericVector> >::type Ax(AxSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<IntegerVector> >::type Ax_idx(Ax_idxSEXP);
+    osqpUpdate(workPtr, q_new, l_new, u_new, Px, Px_idx, Ax, Ax_idx);
     return R_NilValue;
 END_RCPP
 }
@@ -109,7 +113,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_osqp_osqpSolve", (DL_FUNC) &_osqp_osqpSolve, 1},
     {"_osqp_osqpGetParams", (DL_FUNC) &_osqp_osqpGetParams, 1},
     {"_osqp_osqpGetDims", (DL_FUNC) &_osqp_osqpGetDims, 1},
-    {"_osqp_osqpUpdate", (DL_FUNC) &_osqp_osqpUpdate, 4},
+    {"_osqp_osqpUpdate", (DL_FUNC) &_osqp_osqpUpdate, 8},
     {"_osqp_osqpUpdateSettings", (DL_FUNC) &_osqp_osqpUpdateSettings, 3},
     {"_osqp_osqpGetData", (DL_FUNC) &_osqp_osqpGetData, 2},
     {"_osqp_osqpWarmStart", (DL_FUNC) &_osqp_osqpWarmStart, 3},

@@ -34,7 +34,7 @@ problem, modify the optimization settings or attempt to solve the problem.
 \preformatted{model = osqp(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars=osqpSettings())
 
 model$Solve()
-model$Update(q = NULL, l = NULL, u = NULL)
+model$Update(q = NULL, l = NULL, u = NULL, Px = NULL, Px_idx = NULL, Ax = NULL, Ax_idx = NULL)
 model$GetParams()
 model$GetDims()
 model$UpdateSettings(newPars = list())

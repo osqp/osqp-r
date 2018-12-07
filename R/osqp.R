@@ -115,8 +115,6 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
           public =
             list(
               initialize = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars=list()) {
-
-
                 private$.work = osqpSetup(P, q, A, l, u, pars)
               },
               Solve = function() osqpSolve(private$.work),
@@ -125,7 +123,7 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
                 dims = osqpGetDims(private$.work)
                 stopifnot(length(q) %in% c(0, dims[[1]]),
                           length(l) %in% c(0, dims[[2]]),
-                          length(u) %in% c(0, dims[[2]]),
+                          length(u) %in% c(0, dims[[2]])
                           )
                 osqpUpdate(private$.work, q, l, u, Px, Px_idx, Ax, Ax_idx)
               },
