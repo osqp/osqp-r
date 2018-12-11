@@ -1,3 +1,7 @@
+# Version 0.5.0 (10 December 2018) OSQP 0.5.0
+
+* Updated OSQP to version 0.5.0
+
 # Version 0.4.1 (25 September 2018) OSQP 0.4.1
 
 * Updated OSQP to version 0.4.1
