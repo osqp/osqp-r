@@ -3,6 +3,9 @@ r:
   - release
   - oldrel
 
+allow_failures:
+  - r: oldrel
+
 # Avoid using packages in the cache
 # cache: packages
 
