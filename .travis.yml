@@ -43,3 +43,4 @@ matrix:
       disable_homebrew: false
   allow_failures:
   - r: oldrel
+    os: linux
