@@ -3,10 +3,6 @@ r:
   - release
   - oldrel
 
-matrix:
-  allow_failures:
-  - r: oldrel
-
 # Avoid using packages in the cache
 # cache: packages
 
@@ -44,3 +40,7 @@ matrix:
     - os: osx
       r: oldrel
       disable_homebrew: false
+      
+matrix:
+  allow_failures:
+  - r: oldrel
