@@ -5,7 +5,7 @@ r:
 
 matrix:
   allow_failures:
-  - r: devel
+  - r: oldrel
 
 # Avoid using packages in the cache
 # cache: packages
