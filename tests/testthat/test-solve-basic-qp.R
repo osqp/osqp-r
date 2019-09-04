@@ -13,8 +13,8 @@ define_simple_qp <- function(){
     l <- rep_len(-Inf, 5)
 
     settings <- osqpSettings(verbose = FALSE,
-                             eps_rel = 1e-09,
-                             eps_abs = 1e-09)
+                             eps_rel = 1e-05,
+                             eps_abs = 1e-05)
 
     # Create OSQP model
     model <- osqp(P, q, A, l, u, settings)
@@ -82,4 +82,3 @@ test_that("Update bounds QP", {
                  -80.0890909023583, 1e-03)
 
 })
-
