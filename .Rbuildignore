@@ -20,3 +20,4 @@ CMakeDirectoryInformation.cmake
 libosqp.a
 ^appveyor\.yml$
 ^cran_comments\.md$
+^CRAN-RELEASE$
