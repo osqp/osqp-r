@@ -38,7 +38,7 @@ osqpSettings(rho = 0.1, sigma = 1e-06, max_iter = 4000L,
 
 \item{polish_refine_iter}{iterative refinement steps in polish}
 
-\item{verbose}{boolean, write out progres}
+\item{verbose}{boolean, write out progress}
 
 \item{scaled_termination}{boolean, use scaled termination criteria}
 

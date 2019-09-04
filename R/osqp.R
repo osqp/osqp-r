@@ -9,7 +9,7 @@
 #' @param q,l,u Numeric vectors, with possibly infinite elements in l and u
 #' @param pars list with optimization parameters, conveniently set with the function
 #' \code{\link{osqpSettings}}. For \code{osqpObject$UpdateSettings(newPars)} only a subset of the settings
-#' can be updated once the problem has been initnialized.
+#' can be updated once the problem has been initialized.
 #' @seealso \code{\link{solve_osqp}}
 #' @section Usage:
 #' \preformatted{model = osqp(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars=osqpSettings())

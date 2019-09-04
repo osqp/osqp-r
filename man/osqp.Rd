@@ -14,7 +14,7 @@ osqp(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL,
 
 \item{pars}{list with optimization parameters, conveniently set with the function
 \code{\link{osqpSettings}}. For \code{osqpObject$UpdateSettings(newPars)} only a subset of the settings
-can be updated once the problem has been initnialized.}
+can be updated once the problem has been initialized.}
 }
 \value{
 An R6-object of class "osqp_model" with methods defined which can be further

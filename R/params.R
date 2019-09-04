@@ -15,7 +15,7 @@
 #' @param delta regularization parameter for polish
 #' @param polish boolean, polish ADMM solution
 #' @param polish_refine_iter iterative refinement steps in polish
-#' @param verbose boolean, write out progres
+#' @param verbose boolean, write out progress
 #' @param scaled_termination boolean, use scaled termination criteria
 #' @param check_termination integer, check termination interval. If 0, termination checking is disabled
 #' @param warm_start boolean, warm start
@@ -60,4 +60,3 @@ checkpar = function(l, r) {
     return (r)
   l
 }
-
