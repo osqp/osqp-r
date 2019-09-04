@@ -8,7 +8,8 @@ solve_osqp(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL,
   pars = osqpSettings())
 }
 \arguments{
-\item{P, A}{sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite.}
+\item{P, A}{sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite.
+Only the upper triangular part of P will be used.}
 
 \item{q, l, u}{Numeric vectors, with possibly infinite elements in l and u}
 
