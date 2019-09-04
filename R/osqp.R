@@ -2,6 +2,7 @@
 #' OSQP Solver object
 #'
 #' @importFrom Matrix sparseMatrix
+#' @importFrom Matrix triu
 #' @importFrom methods as
 #' @importFrom R6 R6Class
 #' @param P,A sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite.
@@ -76,10 +77,11 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
     n = dim(P)[1]
 
 
-  if (is.null(P))
+  if (is.null(P)){
     P = sparseMatrix(integer(), integer(), x = numeric(), dims = c(n, n))
-  else
-    P = as(P, "dgCMatrix")
+  } else {
+    P = triu(as(P, "dgCMatrix"))
+  }
 
   if (is.null(q))
     q = numeric(n)

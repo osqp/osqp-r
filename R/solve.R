@@ -4,6 +4,7 @@
 #' s.t. \deqn{l_i < (A x)_i < u_i}{li < (A x)i < ui}
 #' for real matrices P (nxn, positive semidefinite) and A (mxn) with m number of constraints
 #' @param P,A sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite.
+#' Only the upper triangular part of P will be used.
 #' @param q,l,u Numeric vectors, with possibly infinite elements in l and u
 #' @param pars list with optimization parameters, conveniently set with the function \code{osqpSettings}
 #' @return A list with elements x (the primal solution), y (the dual solution), prim_inf_cert,
@@ -40,4 +41,3 @@ solve_osqp <- function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettin
   model = osqp(P, q, A, l, u, pars)
   model$Solve()
 }
-
