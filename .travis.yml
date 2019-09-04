@@ -1,4 +1,5 @@
 language: r
+
 r:
   - release
   - oldrel
@@ -40,3 +41,6 @@ matrix:
     - os: osx
       r: oldrel
       disable_homebrew: false
+  allow_failures:
+  - r: oldrel
+    os: linux

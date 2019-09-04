@@ -24,7 +24,6 @@ SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVe
 
 
   IntegerVector dimP = P.slot("Dim");
-
   IntegerVector dimA = A.slot("Dim");
   int n = dimP[0];
   int m = dimA[0];
@@ -55,9 +54,10 @@ SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVe
   data->l = lvec.data();
   data->u = uvec.data();
 
+  OSQPWorkspace* workp;
+  osqp_setup(&workp, data.get(), settings.get());
 
-  Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> work(osqp_setup(data.get(), settings.get()));
-
+    Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> work(workp);
 
   return work;
 }

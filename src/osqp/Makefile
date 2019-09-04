@@ -28,6 +28,7 @@ OSQP_SOURCES = \
 $(OSQP_SRC_DIR)/src/auxil.c   \
 $(OSQP_SRC_DIR)/src/cs.c      \
 $(OSQP_SRC_DIR)/src/ctrlc.c   \
+$(OSQP_SRC_DIR)/src/error.c   \
 $(OSQP_SRC_DIR)/src/kkt.c     \
 $(OSQP_SRC_DIR)/src/lin_alg.c \
 $(OSQP_SRC_DIR)/src/lin_sys.c \

@@ -5,6 +5,7 @@ osqp_sources/CMakeCache.txt$
 osqp_sources/\.bumpversion.cfg$
 ^.*editorconfig$
 ^.*git$
+^.*valgrind-suppress.supp$
 cmake_uninstall.cmake$
 cmake_install.cmake$
 osqp-targets.cmake$
@@ -19,3 +20,4 @@ CMakeDirectoryInformation.cmake
 libosqp.a
 ^appveyor\.yml$
 ^cran_comments\.md$
+^CRAN-RELEASE$
