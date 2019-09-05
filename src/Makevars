@@ -20,8 +20,6 @@ $(SHLIBS): $(OSQP_STATIC_LIB)
 
 $(ROBJECTS): $(OSQP_STATIC_LIB)
 
-    $(info Building ROBJECTS)
-
 $(OSQP_STATIC_LIB):
 
 		# The OSQP static library should already exist and
