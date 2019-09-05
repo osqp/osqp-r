@@ -20,6 +20,8 @@ $(SHLIBS): $(OSQP_STATIC_LIB)
 
 $(ROBJECTS): $(OSQP_STATIC_LIB)
 
+    $(info Building ROBJECTS)
+
 $(OSQP_STATIC_LIB):
 
 		# The OSQP static library should already exist and
@@ -31,7 +33,7 @@ $(OSQP_STATIC_LIB):
 		(cd $(OSQP_DIR) && \
 		$(MAKE) CC="$(CC)" \
 		OSQP_FLAGS="$(OSQP_FLAGS)" \
-		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
+		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS) -no-pedantic" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
 		AR="$(AR)" RANLIB="$(RANLIB)" \
 		&& $(MAKE) clean)

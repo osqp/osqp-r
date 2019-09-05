@@ -35,5 +35,5 @@ if hash cmake 2>/dev/null; then
 	echo "-- Built libosqp.a"
 
 else
-	echo "-- You must have cmake installed to build this package."
+	echo "-- cmake is not installed on this system. OSQP library libosqp.a will be built via custom makefile."
 fi
