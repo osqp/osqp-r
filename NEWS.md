@@ -1,3 +1,6 @@
+# Version 0.6.0.1 (5 September 2019) OSQP 0.6.0.1
+* Reformat of Solaris makefiles
+
 # Version 0.6.0 (2 September 2019) OSQP 0.6.0
 
 * Updated OSQP to version 0.6.0
