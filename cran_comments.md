@@ -1,9 +1,18 @@
 ## Test environments
-* local OS X install, R 3.5.9
-* travis-ci with ubuntu, R 3.5.0 and development
-* travis-ci with osx, R 3.5.0 and development
-* appveyor with windows, R 3.5.0 and development
+* Local
+  * OS X 10.14: R 3.6.1
+  * Solaris 11.4 via VirtualBox: R 3.6.1
+* Appveyor:
+  * Windows Server 2012: R-release, R-devel, R-oldrel
+* Travis-CI
+  * Ubuntu 16.04: R-release, R-devel
+  * OS X, with and without homebrew: R-release, R-devel
+* Rhub
+  * Windows Server 2008 R2 SP1, R-devel, 32/64 bit
+  * Ubuntu Linux 16.04 LTS, R-release, GCC
+  * Fedora Linux, R-devel, clang, gfortran
+  * Debian Linux, R-devel, GCC ASAN/UBSAN
+
 
 ## R CMD check results
 There were no ERRORs or WARNINGs.
-
