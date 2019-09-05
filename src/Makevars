@@ -33,7 +33,7 @@ $(OSQP_STATIC_LIB):
 		(cd $(OSQP_DIR) && \
 		$(MAKE) CC="$(CC)" \
 		OSQP_FLAGS="$(OSQP_FLAGS)" \
-		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS) -no-pedantic" \
+		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS) -Wno-pedantic" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
 		AR="$(AR)" RANLIB="$(RANLIB)" \
 		&& $(MAKE) clean)
