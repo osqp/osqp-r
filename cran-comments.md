@@ -1,4 +1,5 @@
 ## Test environments
+
 * Local:
   * OS X 10.14: R 3.6.1
   * Solaris 11.4 via VirtualBox: R 3.6.1

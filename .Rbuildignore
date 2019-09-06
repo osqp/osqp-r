@@ -19,5 +19,5 @@ CMakeDirectoryInformation.cmake
 ^.*\\.gz$
 libosqp.a
 ^appveyor\.yml$
-^cran_comments\.md$
+^cran-comments\.md$
 ^CRAN-RELEASE$
