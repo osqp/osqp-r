@@ -10,7 +10,7 @@ Authors@R: c(
   person("Stephen", "Boyd", role = c("aut", "ctb", "cph")),
   person("Eric", "Anderson", role=c("ctb")))
 Copyright: file COPYRIGHT
-Description: Provides bindings to the 'OSQP' solver. The 'OSQP' solver is a numerical optimization package or solving convex quadratic programs written in 'C' and based on the alternating direction method of multipliers, 'ADMM'. B.  Stellato, G. Banjac, P. Goulart, A. Bemporad, S. Boyd (2018) <arXiv:1711.08013>.
+Description: Provides bindings to the 'OSQP' solver. The 'OSQP' solver is a numerical optimization package or solving convex quadratic programs written in 'C' and based on the alternating direction method of multipliers. See <arXiv:1711.08013> for details.
 License: Apache License 2.0 | file LICENSE
 Imports: Rcpp (>= 0.12.14), methods, Matrix, R6
 LinkingTo: Rcpp
