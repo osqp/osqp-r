@@ -16,4 +16,11 @@
 
 
 ## R CMD check results
-There were no ERRORs or WARNINGs.
+There were no ERRORs or WARNINGs.  
+
+There was 1 NOTE:
+
+  Maintainer: ‘Bartolomeo Stellato <bartolomeo.stellato@gmail.com>’
+  Days since last update: 2
+
+The maintainer information is correct.
