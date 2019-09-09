@@ -1,3 +1,4 @@
+^.*tar.gz$
 ^.*travis\.yml$
 osqp_sources/CMakeFiles$
 osqp_sources/lin_sys/direct/CMakeFiles$

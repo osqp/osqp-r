@@ -1,7 +1,7 @@
 Package: osqp
 Title: Quadratic Programming Solver using the 'OSQP' Library
-Version: 0.6.0.1
-Date: 2019-09-05
+Version: 0.6.0.2
+Date: 2019-09-09
 Authors@R: c(
   person("Bartolomeo", "Stellato", role = c("cre", "aut", "ctb", "cph"),
          email = "bartolomeo.stellato@gmail.com"),

@@ -10,23 +10,13 @@
 set -e
 set -x
 
-if hash gmake 2>/dev/null; then
-
-  # solaris will not build correctly unless gmake is used.
-	# Use it preferentially over make if it exists.
-  MAKE=gmake
-	export MAKE
-
-fi
-
 if hash cmake 2>/dev/null; then
 
 	echo "-- Trying to build libosqp.a via cmake ..."
 	cd src/osqp_sources
-
 	mkdir -p build
 	cd build
-	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../osqp/ ..
+	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
 	cmake --build . --target install
 	cd ..
 	rm -rf build/

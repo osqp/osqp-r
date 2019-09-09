@@ -1,6 +1,6 @@
-# Version 0.6.0.1 (5 September 2019) OSQP 0.6.0.1
+# Version 0.6.0.2 (9 September 2019) OSQP 0.6.0.2
 
-* Patch to OSQP-R build for solaris and fedora
+* Patches to OSQP-R build for solaris and fedora
 
 # Version 0.6.0 (2 September 2019) OSQP 0.6.0
 
