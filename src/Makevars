@@ -34,6 +34,6 @@ $(OSQP_STATIC_LIB):
 		OSQP_FLAGS="$(OSQP_FLAGS)" \
 		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
-		AR="$(AR)"
+		AR="$(AR)" RANLIB="$(RANLIB)"
 
 		$(MAKE) --directory=osqp clean
