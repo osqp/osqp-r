@@ -30,10 +30,12 @@ $(OSQP_STATIC_LIB):
 
 		echo "No cmake?  I will try via osqp/Makefile"
 
-		$(MAKE) --directory=osqp all CC="$(CC)" \
+		cd osqp
+
+		$(MAKE) all CC="$(CC)" \
 		OSQP_FLAGS="$(OSQP_FLAGS)" \
 		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
 		AR="$(AR)" RANLIB="$(RANLIB)"
 
-		$(MAKE) --directory=osqp clean
+		$(MAKE) clean
