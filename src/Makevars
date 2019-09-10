@@ -27,11 +27,10 @@ $(OSQP_STATIC_LIB):
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 		echo "No cmake?  I will try via osqp/Makefile"
-		cd osqp; \ 
+		cd osqp; \
 		$(MAKE) all CC="$(CC)" \
 		OSQP_FLAGS="$(OSQP_FLAGS)" \
 		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
 		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
-		AR="$(AR)" RANLIB="$(RANLIB)"; 
+		AR="$(AR)" RANLIB="$(RANLIB)" ; \
 		$(MAKE) clean
-
