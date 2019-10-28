@@ -16,6 +16,15 @@ S4 toDgCMat(csc*);
 
 //typedef Rcpp::XPtr<OSQPWorkspace, Rcpp::PreserveStorage, mycleanup> XPtrOsqpWork;
 
+// predicate for testing if a value is below -OSQP_INFTY
+bool below_osqp_neg_inf (c_float x) {
+  return (x < -OSQP_INFTY);
+}
+
+// predicate for testing if a value is above OSQP_INFTY
+bool above_osqp_inf (c_float x) {
+  return (x > OSQP_INFTY);
+}
 
 // [[Rcpp::export]]
 SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars)
@@ -37,6 +46,14 @@ SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVe
   std::copy(q.begin(), q.end(), qvec.begin());
   std::copy(l.begin(), l.end(), lvec.begin());
   std::copy(u.begin(), u.end(), uvec.begin());
+
+  // Threshold lvec to range [-OSQP_INFTY, OSQP_INFTY]
+  std::replace_if(lvec.begin(), lvec.end(), below_osqp_neg_inf, -OSQP_INFTY);
+  std::replace_if(lvec.begin(), lvec.end(), above_osqp_inf, OSQP_INFTY);  
+
+  // Threshold uvec to range [-OSQP_INFTY, OSQP_INFTY]  
+  std::replace_if(uvec.begin(), uvec.end(), below_osqp_neg_inf, -OSQP_INFTY);
+  std::replace_if(uvec.begin(), uvec.end(), above_osqp_inf, OSQP_INFTY);  
 
   std::unique_ptr<OSQPSettings> settings (new OSQPSettings);
   osqp_set_default_settings(settings.get());
