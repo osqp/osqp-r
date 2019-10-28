@@ -1,3 +1,7 @@
+# Version 0.6.0.3 (28 October 2019) OSQP 0.6.0.3
+
+* Patches to OSQP-R interface to handle infinite-valued bounds
+
 # Version 0.6.0.2 (9 September 2019) OSQP 0.6.0.2
 
 * Patches to OSQP-R build for solaris and fedora
