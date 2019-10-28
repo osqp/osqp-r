@@ -10,14 +10,13 @@
 set -e
 set -x
 
-if hash cmake 2>/dev/null; then
+if [ -x "$(command -v cmake)" ]; then
 
 	echo "-- Trying to build libosqp.a via cmake ..."
 	cd src/osqp_sources
-
 	mkdir -p build
 	cd build
-	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../osqp/ ..
+	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
 	cmake --build . --target install
 	cd ..
 	rm -rf build/
@@ -26,5 +25,5 @@ if hash cmake 2>/dev/null; then
 	echo "-- Built libosqp.a"
 
 else
-	echo "-- No cmake, so I will try to make libosqp.a via R Makevars instead"
+	echo "-- cmake is not installed on this system. OSQP library libosqp.a will be built via custom makefile."
 fi
