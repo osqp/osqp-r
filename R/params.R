@@ -41,7 +41,7 @@ osqpSettings = function(rho = 0.1, sigma = 1e-06, max_iter = 4000L, eps_abs = 0.
         if (length(given) != 1 || is.na(given)) {
             given_args[[name]] <- default_args[[name]] ## force default
         } else {
-            storage.mode(given_args[[name]]) <- storage.mode(eval(default_args[[name]]))
+            storage.mode(given_args[[name]]) <- storage.mode(eval(default_args[[name]])) #eval default arg
         }
     }
     given_args
