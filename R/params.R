@@ -32,31 +32,17 @@ osqpSettings = function(rho = 0.1, sigma = 1e-06, max_iter = 4000L, eps_abs = 0.
                         scaled_termination = FALSE, check_termination = 25L, warm_start = TRUE,
                         scaling = 10L, adaptive_rho = 1L, adaptive_rho_interval = 0L,
                         adaptive_rho_tolerance = 5, adaptive_rho_fraction = 0.4) {
-  inpars = as.list(match.call())[-1]
-  pars = sapply(simplify = FALSE, USE.NAMES = TRUE, names(inpars), function(nm) {
-    checkpar(inpars[[nm]], defaultOsqpSettings[[nm]])
-  })
-  pars
-}
-
-
-
-defaultOsqpSettings = list(rho = 0.1, sigma = 1e-06, max_iter = 4000L, eps_abs = 0.001,
-                           eps_rel = 0.001, eps_prim_inf = 1e-04, eps_dual_inf = 1e-04,
-                           alpha = 1.6, linsys_solver = c(QDLDL_SOLVER=0L),
-                           delta = 1e-06, polish = FALSE, polish_refine_iter = 3L, verbose = TRUE,
-                           scaled_termination = FALSE, check_termination = 25L, warm_start = TRUE,
-                           scaling = 10L, adaptive_rho = 1L, adaptive_rho_interval = 0L,
-                           adaptive_rho_tolerance = 5, adaptive_rho_fraction = 0.4)
-
-
-checkpar = function(l, r) {
-
-  l = switch(typeof(r),
-             integer=as.integer(l),
-             double=as.numeric(l),
-             logical=as.logical(l))
-  if(length(l) != 1 || is.na(l))
-    return (r)
-  l
+    given_args  <- as.list(environment())
+    call_arg_names  <- names(match.call()[-1]) # lose the function name at index 1
+    default_args  <- formals() ## this is the default list of arg values
+    given_args  <- given_args[call_arg_names] ## restrict to specified args
+    for (name in call_arg_names) {
+        given <- given_args[[name]]
+        if (length(given) != 1 || is.na(given)) {
+            given_args[[name]] <- default_args[[name]] ## force default
+        } else {
+            storage.mode(given_args[[name]]) <- storage.mode(eval(default_args[[name]])) #eval default arg
+        }
+    }
+    given_args
 }
