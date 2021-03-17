@@ -49,11 +49,11 @@ SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVe
 
   // Threshold lvec to range [-OSQP_INFTY, OSQP_INFTY]
   std::replace_if(lvec.begin(), lvec.end(), below_osqp_neg_inf, -OSQP_INFTY);
-  std::replace_if(lvec.begin(), lvec.end(), above_osqp_inf, OSQP_INFTY);  
+  std::replace_if(lvec.begin(), lvec.end(), above_osqp_inf, OSQP_INFTY);
 
-  // Threshold uvec to range [-OSQP_INFTY, OSQP_INFTY]  
+  // Threshold uvec to range [-OSQP_INFTY, OSQP_INFTY]
   std::replace_if(uvec.begin(), uvec.end(), below_osqp_neg_inf, -OSQP_INFTY);
-  std::replace_if(uvec.begin(), uvec.end(), above_osqp_inf, OSQP_INFTY);  
+  std::replace_if(uvec.begin(), uvec.end(), above_osqp_inf, OSQP_INFTY);
 
   std::unique_ptr<OSQPSettings> settings (new OSQPSettings);
   osqp_set_default_settings(settings.get());
@@ -165,6 +165,7 @@ List osqpGetParams(SEXP workPtr)
                           _("adaptive_rho_tolerance") = work->settings->adaptive_rho_tolerance);
 
   res.push_back(work->settings->adaptive_rho_fraction, "adaptive_rho_fraction");
+  res.push_back(work->settings->time_limit, "time_limit");
 
   return res;
 }
@@ -329,6 +330,8 @@ void translateSettings(OSQPSettings* settings, const List& pars)
       settings->scaled_termination = as<c_int>(pars[i]);
     else if (nm == "warm_start")
       settings->warm_start = as<c_int>(pars[i]);
+    else if (nm == "time_limit")
+        settings->time_limit = as<c_float>(pars[i]);
   }
 
   return;
