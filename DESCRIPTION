@@ -1,15 +1,16 @@
 Package: osqp
 Title: Quadratic Programming Solver using the 'OSQP' Library
-Version: 0.6.0.3
-Date: 2019-10-28
+Version: 0.6.0.5
+Date: 2021-12-06
 Authors@R: c(
   person("Bartolomeo", "Stellato", role = c("aut", "ctb", "cph"),
          email = "bartolomeo.stellato@gmail.com"),
   person("Goran", "Banjac", role = c("aut", "ctb", "cph")),
-  person("Paul", "Goulart", role = c("cre", "aut", "ctb", "cph"),
+  person("Paul", "Goulart", role = c("aut", "ctb", "cph"),
          email = "paul.goulart@eng.ox.ac.uk"),
   person("Stephen", "Boyd", role = c("aut", "ctb", "cph")),
-  person("Eric", "Anderson", role=c("ctb")))
+  person("Eric", "Anderson", role = c("ctb")),
+  person("Vineet", "Bansal", role = c("cre"), email = "vineetb@princeton.edu"))
 Copyright: file COPYRIGHT
 Description: Provides bindings to the 'OSQP' solver. The 'OSQP' solver is a numerical optimization package or solving convex quadratic programs written in 'C' and based on the alternating direction method of multipliers. See <arXiv:1711.08013> for details.
 License: Apache License 2.0 | file LICENSE
@@ -19,4 +20,4 @@ RoxygenNote: 6.1.1
 Collate: 'RcppExports.R' 'osqp-package.R' 'solve.R' 'osqp.R' 'params.R'
 NeedsCompilation: yes
 Suggests: testthat
-URL: https://www.osqp.org
+URL: https://osqp.org
