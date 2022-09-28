@@ -4,8 +4,14 @@
 \alias{solve_osqp}
 \title{Sparse Quadratic Programming Solver}
 \usage{
-solve_osqp(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL,
-  pars = osqpSettings())
+solve_osqp(
+  P = NULL,
+  q = NULL,
+  A = NULL,
+  l = NULL,
+  u = NULL,
+  pars = osqpSettings()
+)
 }
 \arguments{
 \item{P, A}{sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite.

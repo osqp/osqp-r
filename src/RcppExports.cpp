@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // osqpSetup
 SEXP osqpSetup(const S4& P, const NumericVector& q, const S4& A, const NumericVector& l, const NumericVector& u, const List& pars);
 RcppExport SEXP _osqp_osqpSetup(SEXP PSEXP, SEXP qSEXP, SEXP ASEXP, SEXP lSEXP, SEXP uSEXP, SEXP parsSEXP) {
