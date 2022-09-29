@@ -1,3 +1,15 @@
+# Version 0.6.0.6
+
+* Change maintainer to Balasubramanian Narasimhan
+
+# Version 0.6.0.5
+
+* (Missing news)
+
+# Version 0.6.0.4
+
+* (Missing news)
+
 # Version 0.6.0.3 (28 October 2019) OSQP 0.6.0.3
 
 * Patches to OSQP-R interface to handle infinite-valued bounds

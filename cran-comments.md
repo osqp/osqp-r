@@ -1,8 +1,7 @@
 ## Test environments
 
 * Local:
-  * OS X 10.14: R 3.6.1
-  * Solaris 11.4 via VirtualBox: R 3.6.1
+  * OS X 12.6: R 4.2.1
 * Appveyor:
   * Windows Server 2012: R-release, R-devel, R-oldrel
 * Travis-CI:
