@@ -197,13 +197,13 @@ void osqpUpdate(SEXP workPtr,
   if (q_new.isNotNull()) {
     osqp_update_lin_cost(work, as<NumericVector>(q_new.get()).begin());
   }
-  if (l_new.isNotNull() & u_new.isNull()) {
+  if (l_new.isNotNull() && u_new.isNull()) {
     osqp_update_lower_bound(work, as<NumericVector>(l_new.get()).begin());
   }
-  if (u_new.isNotNull() & l_new.isNull()) {
+  if (u_new.isNotNull() && l_new.isNull()) {
     osqp_update_upper_bound(work, as<NumericVector>(u_new.get()).begin());
   }
-  if (u_new.isNotNull() & l_new.isNotNull()) {
+  if (u_new.isNotNull() && l_new.isNotNull()) {
     osqp_update_bounds(work,
         as<NumericVector>(l_new.get()).begin(),
         as<NumericVector>(u_new.get()).begin());
@@ -227,7 +227,7 @@ void osqpUpdate(SEXP workPtr,
     len_Ax = Ax_.size();
   }
   // Only P
-  if (Px.isNotNull() & Ax.isNull()){
+  if (Px.isNotNull() && Ax.isNull()){
       osqp_update_P(work,
           as<NumericVector>(Px.get()).begin(),
           Px_idx_,
@@ -235,14 +235,14 @@ void osqpUpdate(SEXP workPtr,
   }
 
   // Only A
-  if (Ax.isNotNull() & Px.isNull()){
+  if (Ax.isNotNull() && Px.isNull()){
       osqp_update_A(work, as<NumericVector>(Ax.get()).begin(),
                     Ax_idx_,
                     len_Ax);
   }
 
   // Both A and P
-  if (Px.isNotNull() & Ax.isNotNull()){
+  if (Px.isNotNull() && Ax.isNotNull()){
       osqp_update_P_A(
           work,
           as<NumericVector>(Px.get()).begin(),

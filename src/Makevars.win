@@ -29,7 +29,7 @@ $(OSQP_STATIC_LIB):
 		# package is being built in the CRAN servers), then we have
 		# a go at building the static library here.
 		echo "Making prototype fixes to osqp_sources for CRAN"
-		$(R_HOME)/bin/Rscript $(FIXES_SCRIPT)
+		$(R_HOME)/bin$(R_ARCH_BIN)/Rscript $(FIXES_SCRIPT)
 		echo "No cmake?  I will try via osqp/Makefile"
 		cd osqp; \
 		$(MAKE) all CC="$(CC)" \
