@@ -1,3 +1,9 @@
+# Version 0.6.0.7
+
+* Fix use of bitwise `&` with boolean operands (file `osqp_interface.cpp`)
+* Fix function declaration without prototype (files
+  `paradiso_loader.h`, `paradiso_interface.c`, `paradiso_loader.c`)
+
 # Version 0.6.0.6
 
 * Change maintainer to Balasubramanian Narasimhan
