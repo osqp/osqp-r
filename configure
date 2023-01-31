@@ -2,7 +2,7 @@
 # a user installs osqp from the R command line using
 # "R CMD install .". It builds the osqp static Library
 # via cmake so that R can link to it if cmake exists
-# in this system.   Otherwise it will be build via
+# in this system.   Otherwise it will be built via
 # the R Makevars system (e.g. because it is being
 # built on the CRAN build farm)
 
@@ -10,13 +10,28 @@
 set -e
 set -x
 
-if [ -x "$(command -v cmake)" ]; then
+# Per R-exts section on using CMAKE
 
+: ${R_HOME=`R RHOME`}
+if test -z "${R_HOME}"; then
+  echo "could not determine R_HOME"
+  exit 1
+fi
+CC=`"${R_HOME}/bin/R" CMD config CC`
+CFLAGS=`"${R_HOME}/bin/R" CMD config CFLAGS`
+CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
+CXX=`"${R_HOME}/bin/R" CMD config CXX`
+CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
+LDFLAGS=`"${R_HOME}/bin/R" CMD config LDFLAGS`
+
+if [ -x "$(command -v cmake)" ]; then
+   	echo "Making fixes to osqp_sources for CRAN"
+	(cd src && ${R_HOME}/bin/Rscript ../inst/26ce409b_fixes/make_fixes.R)
 	echo "-- Trying to build libosqp.a via cmake ..."
 	cd src/osqp_sources
 	mkdir -p build
 	cd build
-	cmake -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
+	cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS:bool=OFF -DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
 	cmake --build . --target install
 	cd ..
 	rm -rf build/
