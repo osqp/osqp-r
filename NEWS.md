@@ -3,7 +3,9 @@
 * Fix prototype of `main` in `qdldl_sources/examplaes/example.c`
 * Fix use of `cmake`; was previously bombing due to `proj.h` header
   being found from system areas, rather than locally
-* Fix configure script so that R-exts procedures are followed
+* Fix `configure` script so that R-exts prescriptions are followed
+* Update requirements and files to default of C++17 (`src/Makevars`,
+  `src/Makevars.win`, `src/osqp/Makefile`)
 
 # Version 0.6.0.7
 

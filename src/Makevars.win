@@ -12,7 +12,7 @@ FIXES_SCRIPT=../inst/26ce409b_fixes/make_fixes.R
 ROBJECTS=osqp_solve_interface.o RcppExports.o
 OBJECTS=$(ROBJECTS)
 
-CXX_STD=CXX11
+CXX_STD=CXX17
 
 .PHONY: $(R_OBJECTS) all
 
