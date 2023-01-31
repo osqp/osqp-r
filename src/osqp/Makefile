@@ -57,7 +57,7 @@ $(QDLDL_DIR)/qdldl_sources/src/qdldl.c
 
 OSQP_OBJECTS = $(OSQP_SOURCES:.c=.o)
 
-CXX_STD=CXX11
+CXX_STD=CXX17
 
 all: $(OSQP_STATIC_LIB) osqp_includes
 
