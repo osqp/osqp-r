@@ -26,3 +26,4 @@ libosqp.a
 .github
 src/osqp_sources/CITATION.cff
 src/osqp_sources/docs
+src/osqp_sources/tests
