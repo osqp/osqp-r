@@ -24,4 +24,5 @@ Collate: 'RcppExports.R' 'osqp-package.R' 'sparse.R' 'solve.R' 'osqp.R' 'params.
 NeedsCompilation: yes
 Suggests: testthat
 Encoding: UTF-8
+BugReports: https://github.com/osqp/osqp-r/issues
 URL: https://osqp.org
