@@ -5,17 +5,16 @@
 extern "C" {
 # endif /* ifdef __cplusplus */
 
+#include <limits.h> //for the QDLDL_INT_TYPE_MAX
+
 // QDLDL integer and float types
 
 typedef long long    QDLDL_int;   /* for indices */
 typedef double  QDLDL_float; /* for numerical values  */
+typedef unsigned char   QDLDL_bool;  /* for boolean values  */
 
-// Use bool for logical type if available
-#if __STDC_VERSION__ >= 199901L
-typedef _Bool QDLDL_bool;
-#else
-typedef int   QDLDL_bool;
-#endif
+//Maximum value of the signed type QDLDL_int.
+#define QDLDL_INT_MAX LLONG_MAX
 
 # ifdef __cplusplus
 }
