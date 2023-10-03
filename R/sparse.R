@@ -36,7 +36,7 @@ ensure_dgc_matrix <- function(m) {
 #' @importFrom methods as
 #' @noRd
 ensure_dtc_matrix <- function(m) {
-  if (inherits(m, "dgCMatrix")) {
+  if (inherits(m, "dtCMatrix")) {
     m
   } else if (inherits(m, "matrix")) {
     Matrix::.m2sparse(m, "dtCMatrix")
@@ -55,3 +55,4 @@ ensure_dtc_matrix <- function(m) {
     Matrix::triu(as(as(as(m, "CsparseMatrix"), "generalMatrix"), "dMatrix"))
   }
 }
+
