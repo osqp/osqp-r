@@ -1,3 +1,10 @@
+# Version 0.6.3
+
+* Sync up to version [0.6.3 of OSQP release](https://github.com/osqp/osqp/releases/tag/v0.6.3)
+* Fix `params.R` ([issue #18](https://github.com/osqp/osqp-r/issues/18))
+* Added `time-limit` settings parameter per [PG's code](https://github.com/osqp/osqp-r/pull/24)
+* Added check for lower bounds not exceeding upper bounds ([issue 29](https://github.com/osqp/osqp-r/issues/29))
+
 # Version 0.6.0.8
 
 * Fix prototype of `main` in `qdldl_sources/examplaes/example.c`

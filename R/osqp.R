@@ -5,7 +5,7 @@
 #' @importFrom Matrix triu
 #' @importFrom methods as
 #' @importFrom R6 R6Class
-#' @param P,A sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite.
+#' @param P,A sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite. (In the interest of efficiency, only the upper triangular part of P is used)
 #' @param q,l,u Numeric vectors, with possibly infinite elements in l and u
 #' @param pars list with optimization parameters, conveniently set with the function
 #' \code{\link{osqpSettings}}. For \code{osqpObject$UpdateSettings(newPars)} only a subset of the settings
@@ -64,7 +64,7 @@
 #' # Update model and solve again
 #' model$Update(q = q_new)
 #' res <- model$Solve()
-#'
+#' @importFrom Matrix sparseMatrix
 #' @export
 osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
 
@@ -73,14 +73,17 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
 
   if (is.null(P))
     n = length(q)
-  else
-    n = dim(P)[1]
-
+  else {
+    dimP <- dim(P)
+    n = dim(P)[1L]
+    if (dimP[2L] != n) stop("P must be symmetric!")
+  }
 
   if (is.null(P)){
-    P = sparseMatrix(integer(), integer(), x = numeric(), dims = c(n, n))
+    P = Matrix::sparseMatrix(integer(), integer(), x = numeric(), dims = c(n, n))
   } else {
-    P = triu(as(P, "dgCMatrix"))
+    ## P = triu(as(P, "dgCMatrix"))
+    P <- ensure_dtc_matrix(P)
   }
 
   if (is.null(q))
@@ -91,11 +94,12 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
 
   if (is.null(A)) {
     m = 0
-    A = sparseMatrix(integer(), integer(), x = numeric(), dims = c(m, n))
+    A = Matrix::sparseMatrix(integer(), integer(), x = numeric(), dims = c(m, n))
     u = l = numeric()
   } else {
-    A = as(A, "dgCMatrix")
     m = nrow(A)
+    ## A = as(A, "dgCMatrix")
+    A <- ensure_dgc_matrix(A)
     if (is.null(u))
       u = rep_len(Inf, m)
     else
@@ -107,11 +111,11 @@ osqp = function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
       l = as.numeric(l)
   }
 
-  stopifnot(dim(P) == c(n, n),
-            length(q) == n,
+  stopifnot(length(q) == n,
             dim(A) == c(m, n),
             length(l) == m,
-            length(u) == m)
+            length(u) == m,
+            l <= u)
 
   R6Class("osqp_model",
           public =

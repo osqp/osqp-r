@@ -7,7 +7,7 @@
 osqp(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL, pars = osqpSettings())
 }
 \arguments{
-\item{P, A}{sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite.}
+\item{P, A}{sparse matrices of class dgCMatrix or coercible into such, with P positive semidefinite. (In the interest of efficiency, only the upper triangular part of P is used)}
 
 \item{q, l, u}{Numeric vectors, with possibly infinite elements in l and u}
 
@@ -48,8 +48,8 @@ print(model)
 \section{Method Arguments}{
 
 \describe{
-  \item{element}{a string with the name of one of the matrices / vectors of the problem}
-  \item{newPars}{list with optimization parameters}
+\item{element}{a string with the name of one of the matrices / vectors of the problem}
+\item{newPars}{list with optimization parameters}
 }
 }
 
@@ -79,7 +79,6 @@ q_new <- c(10., 20.)
 # Update model and solve again
 model$Update(q = q_new)
 res <- model$Solve()
-
 }
 \seealso{
 \code{\link{solve_osqp}}
