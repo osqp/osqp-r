@@ -25,7 +25,8 @@ osqpSettings(
   adaptive_rho = 1L,
   adaptive_rho_interval = 0L,
   adaptive_rho_tolerance = 5,
-  adaptive_rho_fraction = 0.4
+  adaptive_rho_fraction = 0.4,
+  time_limit = 0
 )
 }
 \arguments{
@@ -70,6 +71,8 @@ osqpSettings(
 \item{adaptive_rho_tolerance}{Tolerance X for adapting rho. The new rho has to be X times larger or 1/X times smaller than the current one to trigger a new factorization}
 
 \item{adaptive_rho_fraction}{Interval for adapting rho (fraction of the setup time)}
+
+\item{time_limit}{run time limit with 0 indicating no limit}
 }
 \description{
 For further details please consult the OSQP documentation:

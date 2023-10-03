@@ -23,3 +23,10 @@ libosqp.a
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^\.github$
+.github
+src/osqp_sources/CITATION.cff
+src/osqp_sources/docs
+src/osqp_sources/site
+src/osqp_sources/tests
+src/osqp_sources/lin_sys/direct/qdldl/qdldl_sources/tests
+

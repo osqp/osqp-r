@@ -1,11 +1,9 @@
 # R interface for OSQP
 
-<!-- [![image](https://travis-ci.org/oxfordcontrol/osqp-r.svg?branch=master)](https://travis-ci.org/oxfordcontrol/osqp-r) -->
-
-<!-- [![image](https://ci.appveyor.com/api/projects/status/bx1navxa474nhlpd/branch/master?svg=true)](https://ci.appveyor.com/project/goulart-paul/osqp-r/branch/master) -->
-
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/osqp/osqp-r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/osqp/osqp-r/actions/workflows/R-CMD-check.yaml)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/osqp)](https://cran.r-project.org/package=osqp)
+[![](https://cranlogs.r-pkg.org/badges/osqp)](https://CRAN.R-project.org/package=osqp)
 <!-- badges: end -->
 
 Provides R-bindings to [OSQP](https://osqp.org/): the Operator

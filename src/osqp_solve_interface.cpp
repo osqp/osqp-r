@@ -163,8 +163,10 @@ List osqpGetParams(SEXP workPtr)
                           _("adaptive_rho") = work->settings->adaptive_rho,
                           _("adaptive_rho_interval") = work->settings->adaptive_rho_interval,
                           _("adaptive_rho_tolerance") = work->settings->adaptive_rho_tolerance);
-
+  
+  // 20 is the limit for the above construct, so adding others below. Inefficient!
   res.push_back(work->settings->adaptive_rho_fraction, "adaptive_rho_fraction");
+  res.push_back(work->settings->time_limit, "time_limit");
 
   return res;
 }
@@ -329,6 +331,8 @@ void translateSettings(OSQPSettings* settings, const List& pars)
       settings->scaled_termination = as<c_int>(pars[i]);
     else if (nm == "warm_start")
       settings->warm_start = as<c_int>(pars[i]);
+    else if (nm == "time_limit")
+        settings->time_limit = as<c_float>(pars[i]);
   }
 
   return;
