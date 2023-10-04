@@ -16,13 +16,7 @@ ensure_dgc_matrix <- function(m) {
   } else if (inherits(m, "matrix")) {
     Matrix::.m2sparse(m, "dgCMatrix")
   } else if(inherits(m, "simple_triplet_matrix")) { ## e.g. from package slam
-    ## The matrix method assumes that indices for non-zero entries are
-    ## in row-major order, but the simple_triplet_matrix() constructor
-    ## currently does not canonicalize accordingly ...
-    ind <- order(m$j, m$i)
-    Matrix::sparseMatrix(p = c(0L, cumsum(tabulate(m$j[ind], m$ncol))),
-                         i = m$i[ind] - 1L,
-                         values = m$v[ind], dims = dim(m), index1 = FALSE)
+    Matrix::sparseMatrix(i = m$i, j = m$j, x = m$v, dims = dim(m))
   } else {
     ## Resort to brute force
     as(as(as(m, "CsparseMatrix"), "generalMatrix"), "dMatrix")
@@ -42,17 +36,9 @@ ensure_dtc_matrix <- function(m) {
     Matrix::.m2sparse(m, "dtCMatrix")
   } else if(inherits(m, "simple_triplet_matrix")) { ## e.g. from package slam
     ind <- which(m$i <= m$j)
-    x <- list(i = m$i[ind] + 1L, j = m$j[ind] + 1L) ##make it 1-based
-    values <- m$v[ind]
-    ind  <- order(x$j, x$i)  ## may not be needed
-    Matrix::sparseMatrix(p = c(0L, cumsum(tabulate(x$j[ind], m$ncol))),
-                         i = x$i[ind] - 1L,
-                         values = values,
-                         dims = dim(x), index1 = FALSE,
-                         triangular = TRUE)
+    Matrix::sparseMatrix(i = m$i[ind], j = m$j[ind], x = m$v[ind], dims = dim(m), triangular = TRUE)
   } else {
     ## Resort to brute force
     Matrix::triu(as(as(as(m, "CsparseMatrix"), "generalMatrix"), "dMatrix"))
   }
 }
-
