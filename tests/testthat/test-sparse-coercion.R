@@ -14,13 +14,9 @@ test_that("Dense P & A are properly coerced", {
 })
 
 test_that("Triplet-form P & A are properly coerced", {
-  P <- list(i = c(1L, 2L, 1L, 2L), j = c(1L, 1L, 2L, 2L), v = c(11.0, 2.0, 2.0, 1.0))
-  P$nrow <- 2L; P$ncol <- 2L; class(P) <- "simple_triplet_matrix"
+  P <- slam::as.simple_triplet_matrix(matrix(c(11., 2.0, 2.0, 1.0), 2, 2))
   q <- c(3., 4.)
-  A <- list(i = c(1L, 3L, 4L, 5L, 2L, 3L, 4L, 5L),
-            j = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
-            v = c(-1.0, -1.0, 2.0, 3.0, -1.0, -3.0, 5.0, 4.0))
-  A$nrow <- 5L; A$ncol <- 2L; class(A) <- "simple_triplet_matrix"
+  A <- slam::as.simple_triplet_matrix(matrix(c(-1., 0., -1., 2., 3., 0., -1., -3., 5., 4.) , 5, 2))
   u <- c(0., 0., -15., 100., 80)
   l <- rep_len(-Inf, 5)
 

@@ -22,7 +22,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Collate: 'RcppExports.R' 'osqp-package.R' 'sparse.R' 'solve.R' 'osqp.R' 'params.R'
 NeedsCompilation: yes
-Suggests: testthat
+Suggests: 
+    slam,
+    testthat
 Encoding: UTF-8
 BugReports: https://github.com/osqp/osqp-r/issues
 URL: https://osqp.org
