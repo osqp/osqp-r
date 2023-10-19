@@ -32,7 +32,9 @@ if [ -x "$(command -v cmake)" ]; then
 	mkdir -p build
 	cd build
 	CFLAGS="${CPPFLAGS} ${CFLAGS}"
-	CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}"	
+	CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}"
+	echo "CFLAGS are ${CFLAGS}"
+	echo "CXXFLAGS are ${CFLAGS}"
 	cmake -DR_HOME="${R_HOME}" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS:bool=OFF -DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
 	cmake --build . --target install
 	cd ..
