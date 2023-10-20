@@ -46,16 +46,6 @@ replace_lines(path = "osqp_sources/lin_sys/direct/qdldl/qdldl_sources/examples/e
 ## Rename proj.h to osqp_proj.h and edit files that use it.
 file.rename(from = "osqp_sources/include/proj.h", to = "osqp_sources/include/osqp_proj.h")
 
-## Fix CMakeLists.txt
-replace_lines("osqp_sources/CMakeLists.txt", 2, 'cmake_minimum_required (VERSION 3.5)',
-              comment_prefix = "#")
-
-replace_lines("osqp_sources/include/CMakeLists.txt", 12, '    "${CMAKE_CURRENT_SOURCE_DIR}/osqp_proj.h"',
-              comment_prefix = "#")
-
-replace_lines("osqp_sources/lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt", 2, 'cmake_minimum_required (VERSION 3.5)',
-              comment_prefix = "#")
-
 ## Fix auxil.c
 replace_lines("osqp_sources/src/auxil.c", 3, '#include "osqp_proj.h"')
 
@@ -64,5 +54,23 @@ replace_lines("osqp_sources/src/polish.c", 7, '#include "osqp_proj.h"')
 
 ## Fix proj.c
 replace_lines("osqp_sources/src/proj.c", 1, '#include "osqp_proj.h"')
+
+## Fix CMakeLists.txt
+replace_lines("osqp_sources/include/CMakeLists.txt", 12, '    "${CMAKE_CURRENT_SOURCE_DIR}/osqp_proj.h"',
+              comment_prefix = "#")
+
+replace_lines("osqp_sources/lin_sys/direct/qdldl/qdldl_sources/CMakeLists.txt", 2, 'cmake_minimum_required (VERSION 3.5)',
+              comment_prefix = "#")
+
+replace_lines("osqp_sources/CMakeLists.txt", 2, 'cmake_minimum_required (VERSION 3.5)',
+              comment_prefix = "#")
+
+## Drop lines 242-255  as they are not needed
+## lines <- readLines("osqp_sources/CMakeLists.txt")[-(242:255)]
+##writeLines(lines, "osqp_sources/CMakeLists.txt")
+
+## Replace findR.cmake
+replace_lines("osqp_sources/configure/cmake/FindR.cmake", 11, 'find_program(R_EXEC NAMES R R.exe PATHS ${R_HOME}/bin)',
+              comment_prefix='#')
 
 

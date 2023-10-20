@@ -31,7 +31,7 @@ if [ -x "$(command -v cmake)" ]; then
 	cd src/osqp_sources
 	mkdir -p build
 	cd build
-	cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS:bool=OFF -DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
+	cmake -DR_HOME="${R_HOME}" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS:bool=OFF -DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
 	cmake --build . --target install
 	cd ..
 	rm -rf build/

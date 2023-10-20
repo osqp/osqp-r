@@ -1,3 +1,12 @@
+# Version 0.6.3.2
+
+* CMAKE file fixes per R-exts
+
+# Version 0.6.3.1
+
+* Bug fix: typo in sparse coercion routines (`dgCMatrix` where
+  `dtCMatrix` should be).
+
 # Version 0.6.3
 
 * Sync up to version [0.6.3 of OSQP release](https://github.com/osqp/osqp/releases/tag/v0.6.3)
