@@ -66,8 +66,11 @@ replace_lines("osqp_sources/CMakeLists.txt", 2, 'cmake_minimum_required (VERSION
               comment_prefix = "#")
 
 ## Drop lines 242-255  as they are not needed
-lines <- readLines("osqp_sources/CMakeLists.txt")[-(242:255)]
-writeLines(lines, "osqp_sources/CMakeLists.txt")
+## lines <- readLines("osqp_sources/CMakeLists.txt")[-(242:255)]
+##writeLines(lines, "osqp_sources/CMakeLists.txt")
 
+## Replace findR.cmake
+replace_lines("osqp_sources/configure/cmake/FindR.cmake", 11, 'find_program(R_EXEC NAMES R R.exe PATHS ${R_HOME}/bin)',
+              comment_prefix='#')
 
 
