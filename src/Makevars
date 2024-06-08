@@ -1,5 +1,5 @@
 OSQP_LIB_TARGET_DIR=./lib
-OSQP_INCLUDE_TARGET_DIR=./include/osqp/
+OSQP_INCLUDE_TARGET_DIR=./include/osqp
 OSQP_STATIC_LIB=$(OSQP_LIB_TARGET_DIR)/libosqp.a
 
 OSQP_FLAGS=-DR_LANG=TRUE
@@ -7,7 +7,7 @@ OSQP_FLAGS=-DR_LANG=TRUE
 PKG_CXXFLAGS=-I$(OSQP_INCLUDE_TARGET_DIR)
 PKG_LIBS=-L$(OSQP_LIB_TARGET_DIR) -losqp
 
-FIXES_SCRIPT=../inst/58f00bd_fixes/make_fixes.R
+FIXES_SCRIPT=../inst/0dd00a57_fixes/make_fixes.R
 
 ROBJECTS=osqp_solve_interface.o RcppExports.o
 OBJECTS=$(ROBJECTS)
@@ -30,7 +30,6 @@ $(OSQP_STATIC_LIB):
 		# a go at building the static library here.
 		echo "Making fixes to osqp_sources for CRAN"
 		$(R_HOME)/bin/Rscript $(FIXES_SCRIPT)
-		echo "No cmake?  I will try via osqp/Makefile"
 		cd osqp; \
 		$(MAKE) all CC="$(CC)" \
 		OSQP_FLAGS="$(OSQP_FLAGS)" \
