@@ -1,7 +1,7 @@
 Package: osqp
 Title: Quadratic Programming Solver using the 'OSQP' Library
-Version: 0.6.3.3
-Date: 2024-06-07
+Version: 1.0.0
+Date: 2026-02-16
 Authors@R: c(
   person("Bartolomeo", "Stellato", role = c("aut", "ctb", "cph"),
          email = "bartolomeo.stellato@gmail.com"),
@@ -11,18 +11,21 @@ Authors@R: c(
   person("Stephen", "Boyd", role = c("aut", "ctb", "cph")),
   person("Eric", "Anderson", role = c("ctb")),
   person("Vineet", "Bansal", role = c("aut", "ctb"), email = "vineetb@princeton.edu"),
-  person("Balasubramanian", "Narasimhan", role = c("cre", "ctb"), email = "naras@stanford.edu"))	
+  person("Balasubramanian", "Narasimhan", role = c("cre", "aut"), email = "naras@stanford.edu"))	
 Copyright: file COPYRIGHT
-Description: Provides bindings to the 'OSQP' solver. The 'OSQP' solver is a numerical optimization package or solving convex quadratic programs written in 'C' and based on the alternating direction method of multipliers. See <doi:10.48550/arXiv.1711.08013> for details.
+Description: Provides bindings to the 'OSQP' solver. The 'OSQP' solver is a numerical optimization package for solving convex quadratic programs written in 'C' and based on the alternating direction method of multipliers. See <doi:10.48550/arXiv.1711.08013> for details.
 License: Apache License 2.0 | file LICENSE
-SystemRequirements: C++17
-Imports: Rcpp (>= 0.12.14), methods, Matrix (>= 1.6.1), R6
+SystemRequirements: C++17, GNU make
+Imports: Rcpp (>= 0.12.14), methods, Matrix (>= 1.6.1), S7, cli
 LinkingTo: Rcpp
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Collate: 'RcppExports.R' 'osqp-package.R' 'sparse.R' 'solve.R' 'osqp.R' 'params.R'
 NeedsCompilation: yes
-Suggests: 
+VignetteBuilder: knitr
+Suggests:
+    knitr,
+    rmarkdown,
     slam,
     testthat
 Encoding: UTF-8

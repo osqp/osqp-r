@@ -29,7 +29,7 @@ test_that("Solve basic QP", {
     model <- define_simple_qp()
 
     # Solve
-    res <- model$Solve()
+    res <- model@Solve()
 
     expect_equal(res$x, c(0., 5.), 1e-03)
     expect_equal(res$y, c(1.66666, 0., 1.3333, 0., 0.), 1e-03)
@@ -43,14 +43,14 @@ test_that("Update basic QP", {
     model <- define_simple_qp()
 
     # Solve
-    res <- model$Solve()
+    res <- model@Solve()
 
     # Define new vector
     q_new <- c(10., 20.)
 
     # Update model and solve again
-    model$Update(q = q_new)
-    res <- model$Solve()
+    model@Update(q = q_new)
+    res <- model@Solve()
 
     expect_equal(res$x, c(0., 5.), 1e-03)
     expect_equal(res$y, c(3.333, 0., 6.666, 0., 0.), 1e-03)
@@ -64,15 +64,15 @@ test_that("Update bounds QP", {
     model <- define_simple_qp()
 
     # Solve
-    res <- model$Solve()
+    res <- model@Solve()
 
     # Define new vector
     l_new <- -100 * rep(1, 5)
     u_new <- 1000 * rep(1, 5)
 
     # Update model and solve again
-    model$Update(l = l_new, u = u_new)
-    res_updated <- model$Solve()
+    model@Update(l = l_new, u = u_new)
+    res_updated <- model@Solve()
 
     expect_equal(res_updated$x, c(-0.12727273,
                                   -19.94909091), 1e-03)

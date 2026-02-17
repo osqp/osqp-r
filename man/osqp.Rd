@@ -12,12 +12,11 @@ osqp(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL, pars = osqpSettings())
 \item{q, l, u}{Numeric vectors, with possibly infinite elements in l and u}
 
 \item{pars}{list with optimization parameters, conveniently set with the function
-\code{\link{osqpSettings}}. For \code{osqpObject$UpdateSettings(newPars)} only a subset of the settings
+\code{\link{osqpSettings}}. For \code{model@UpdateSettings(newPars)} only a subset of the settings
 can be updated once the problem has been initialized.}
 }
 \value{
-An R6-object of class "osqp_model" with methods defined which can be further
-used to solve the problem with updated settings / parameters.
+An S7 object of class "OSQP_Model" with computed properties that return methods.
 }
 \description{
 OSQP Solver object
@@ -25,21 +24,23 @@ OSQP Solver object
 \details{
 Allows one to solve a parametric
 problem with for example warm starts between updates of the parameter, c.f. the examples.
-The object returned by \code{osqp} contains several methods which can be used to either update/get details of the
+The object returned by \code{osqp} contains several computed properties (accessed via \code{@})
+which can be used to either update/get details of the
 problem, modify the optimization settings or attempt to solve the problem.
 }
 \section{Usage}{
 
 \preformatted{model = osqp(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars=osqpSettings())
 
-model$Solve()
-model$Update(q = NULL, l = NULL, u = NULL, Px = NULL, Px_idx = NULL, Ax = NULL, Ax_idx = NULL)
-model$GetParams()
-model$GetDims()
-model$UpdateSettings(newPars = list())
+model@Solve()
+model@Update(q = NULL, l = NULL, u = NULL, Px = NULL, Px_idx = NULL, Ax = NULL, Ax_idx = NULL)
+model@GetParams()
+model@GetDims()
+model@UpdateSettings(newPars = list())
 
-model$GetData(element = c("P", "q", "A", "l", "u"))
-model$WarmStart(x=NULL, y=NULL)
+model@GetData(element = c("P", "q", "A", "l", "u"))
+model@WarmStart(x=NULL, y=NULL)
+model@ColdStart()
 
 print(model)
 }
@@ -71,14 +72,14 @@ settings <- osqpSettings(verbose = FALSE)
 model <- osqp(P, q, A, l, u, settings)
 
 # Solve
-res <- model$Solve()
+res <- model@Solve()
 
 # Define new vector
 q_new <- c(10., 20.)
 
 # Update model and solve again
-model$Update(q = q_new)
-res <- model$Solve()
+model@Update(q = q_new)
+res <- model@Solve()
 }
 \seealso{
 \code{\link{solve_osqp}}

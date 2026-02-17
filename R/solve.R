@@ -39,5 +39,5 @@
 solve_osqp <- function(P=NULL, q=NULL, A=NULL, l=NULL, u=NULL, pars = osqpSettings()) {
 
   model = osqp(P, q, A, l, u, pars)
-  model$Solve()
+  model@Solve()
 }

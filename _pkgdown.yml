@@ -1,0 +1,59 @@
+url: https://osqp.github.io/osqp-r/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#1B2A4A"
+    navbar-bg: "#1B2A4A"
+    navbar-light-color: "#FFFFFF"
+    navbar-light-hover-color: "#5B9BD5"
+    navbar-light-brand-color: "#FFFFFF"
+
+home:
+  title: "osqp: Quadratic Programming Solver for R"
+
+navbar:
+  bg: dark
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/osqp/osqp-r
+      aria-label: GitHub
+    articles:
+      text: Articles
+      menu:
+        - text: "Solving Quadratic Programs with OSQP"
+          href: articles/osqp.html
+
+reference:
+  - title: "Solver"
+    desc: "Create and solve quadratic programs"
+    contents:
+      - osqp
+      - solve_osqp
+  - title: "Settings"
+    desc: "Configure solver parameters"
+    contents:
+      - osqpSettings
+
+authors:
+  Bartolomeo Stellato:
+    href: https://stella.to/
+  Goran Banjac:
+    href: https://scholar.google.com/citations?user=BEPOHeoAAAAJ&hl=en
+  Paul Goulart:
+    href: https://users.ox.ac.uk/~engs1373/
+  Stephen Boyd:
+    href: https://stanford.edu/~boyd/
+  Vineet Bansal:
+    href: https://researchcomputing.princeton.edu/about/people-directory/vineet-bansal
+  Balasubramanian Narasimhan:
+    href: https://naras.su.domains
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with

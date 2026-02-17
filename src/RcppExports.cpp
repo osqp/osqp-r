@@ -112,6 +112,16 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// osqpColdStart
+void osqpColdStart(SEXP workPtr);
+RcppExport SEXP _osqp_osqpColdStart(SEXP workPtrSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type workPtr(workPtrSEXP);
+    osqpColdStart(workPtr);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_osqp_osqpSetup", (DL_FUNC) &_osqp_osqpSetup, 6},
@@ -122,6 +132,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_osqp_osqpUpdateSettings", (DL_FUNC) &_osqp_osqpUpdateSettings, 3},
     {"_osqp_osqpGetData", (DL_FUNC) &_osqp_osqpGetData, 2},
     {"_osqp_osqpWarmStart", (DL_FUNC) &_osqp_osqpWarmStart, 3},
+    {"_osqp_osqpColdStart", (DL_FUNC) &_osqp_osqpColdStart, 1},
     {NULL, NULL, 0}
 };
 

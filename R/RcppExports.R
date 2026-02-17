@@ -33,3 +33,7 @@ osqpWarmStart <- function(workPtr, x, y) {
     invisible(.Call(`_osqp_osqpWarmStart`, workPtr, x, y))
 }
 
+osqpColdStart <- function(workPtr) {
+    invisible(.Call(`_osqp_osqpColdStart`, workPtr))
+}
+

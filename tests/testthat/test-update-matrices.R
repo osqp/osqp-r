@@ -29,7 +29,7 @@ test_that("Solve update matrices", {
     model <- define_simple_qp()
 
     # Solve
-    res <- model$Solve()
+    res <- model@Solve()
 
     expect_equal(res$x, c(0., 5.), 1e-03)
     expect_equal(res$y, c(1.66666, 0., 1.3333, 0., 0.), 1e-03)
@@ -38,8 +38,8 @@ test_that("Solve update matrices", {
     # Update P
     Px <- c(1.,  3.)
 
-    model$Update(Px = Px)
-    res_P <- model$Solve()
+    model@Update(Px = Px)
+    res_P <- model@Solve()
 
     expect_equal(res_P$x, c(2.5, 4.16666), 1e-03)
     expect_equal(res_P$y, c(0., 0., 5.5, 0., 0.), 1e-03)
