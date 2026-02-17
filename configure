@@ -1,8 +1,10 @@
+#!/bin/sh
+
 # This script is executed automatically by R when
 # a user installs osqp from the R command line using
 # "R CMD install .". It builds the osqp static Library
 # via cmake so that R can link to it if cmake exists
-# in this system.   Otherwise it will be built via
+# in this system. Otherwise it will be built via
 # the R Makevars system (e.g. because it is being
 # built on the CRAN build farm)
 
@@ -25,17 +27,58 @@ CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
 LDFLAGS=`"${R_HOME}/bin/R" CMD config LDFLAGS`
 
 if [ -x "$(command -v cmake)" ]; then
-   	echo "Making fixes to osqp_sources for CRAN"
-	(cd src && ${R_HOME}/bin/Rscript ../inst/58f00bd_fixes/make_fixes.R)
 	echo "-- Trying to build libosqp.a via cmake ..."
+
+	# Copy our R-specific configure header
+	cp src/osqp_configure_R.h src/osqp_sources/include/private/osqp_configure.h
+
+	# Copy R printing header (Rprintf instead of printf)
+	cp src/printing_R.h src/osqp_sources/include/private/printing.h
+
+	# Copy QDLDL types header for vendored QDLDL
+	cp src/qdldl_types_R.h src/qdldl_sources/include/qdldl_types.h
+
 	cd src/osqp_sources
 	mkdir -p build
 	cd build
-	cmake -DR_HOME="${R_HOME}" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS:bool=OFF -DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON -DR_LANG=TRUE -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
+	cmake \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DBUILD_SHARED_LIBS:bool=OFF \
+		-DCMAKE_POSITION_INDEPENDENT_CODE:bool=ON \
+		-DR_LANG=TRUE \
+		-DOSQP_ALGEBRA_BACKEND=builtin \
+		-DOSQP_ENABLE_PRINTING=ON \
+		-DOSQP_ENABLE_PROFILING=ON \
+		-DOSQP_ENABLE_INTERRUPT=ON \
+		-DOSQP_USE_LONG=OFF \
+		-DOSQP_USE_FLOAT=OFF \
+		-DOSQP_BUILD_UNITTESTS=OFF \
+		-DOSQP_CODEGEN=OFF \
+		-DOSQP_ENABLE_DERIVATIVES=OFF \
+		-DFETCHCONTENT_SOURCE_DIR_QDLDL="${PWD}/../../qdldl_sources" \
+		-DCMAKE_INSTALL_PREFIX:PATH=../../ \
+		..
 	cmake --build . --target install
 	cd ..
 	rm -rf build/
 	cd ../../
+
+	# cmake installs libosqpstatic.a; rename to libosqp.a for Makevars
+	if [ -f src/lib/libosqpstatic.a ] && [ ! -f src/lib/libosqp.a ]; then
+		mv src/lib/libosqpstatic.a src/lib/libosqp.a
+	fi
+
+	# cmake only installs public headers; copy private headers needed by our C++ code
+	cp src/osqp_sources/include/private/*.h src/include/osqp/
+	cp src/osqp_sources/algebra/builtin/algebra_impl.h src/include/osqp/
+	cp src/osqp_sources/algebra/_common/csc_math.h src/include/osqp/
+	cp src/osqp_sources/algebra/_common/csc_utils.h src/include/osqp/
+	cp src/osqp_sources/algebra/_common/kkt.h src/include/osqp/
+	cp src/osqp_sources/algebra/_common/reduced_kkt.h src/include/osqp/
+	cp src/osqp_sources/algebra/_common/lin_sys/qdldl/qdldl_interface.h src/include/osqp/
+	cp src/qdldl_sources/include/qdldl.h src/include/osqp/
+	cp src/qdldl_sources/include/qdldl_types.h src/include/osqp/
+	cp src/qdldl_sources/include/qdldl_version.h src/include/osqp/
 
 	echo "-- Built libosqp.a"
 

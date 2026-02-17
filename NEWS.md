@@ -1,3 +1,29 @@
+# Version 1.0.0
+
+## Breaking changes
+* Replaced R6 with S7 classes. Model methods are now accessed via `@`
+  (e.g., `model@Solve()`) instead of `$`.
+* Renamed settings to match OSQP 1.0: `warm_start` -> `warm_starting`,
+  `polish` -> `polishing`. The old names are accepted with deprecation
+  warnings.
+
+## New features
+* Upgraded OSQP C library from 0.6.3 to 1.0.0.
+* Added `WarmStart()` and `ColdStart()` methods for primal/dual warm
+  starting.
+* New OSQP 1.0 settings: `rho_is_vec`, `check_dualgap`, `cg_max_iter`,
+  `cg_tol_reduction`, `cg_tol_fraction`, `cg_precond`, `profiler_level`.
+* New solver info fields: `dual_obj_val`, `duality_gap`.
+
+## Other changes
+* Added vignette with examples for lasso regression, portfolio
+  optimization, and warm starting.
+* User-facing messages now use the `cli` package.
+* Vendored QDLDL v0.1.8 for CRAN compatibility.
+* OSQP C library printing now uses `Rprintf` instead of `printf`.
+* Declared GNU make in `SystemRequirements`.
+* `R CMD check` passes with `Status: OK`.
+
 # Version 0.6.3.2
 
 * CMAKE file fixes per R-exts

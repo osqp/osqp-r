@@ -6,6 +6,7 @@
 \usage{
 osqpSettings(
   rho = 0.1,
+  rho_is_vec = TRUE,
   sigma = 1e-06,
   max_iter = 4000L,
   eps_abs = 0.001,
@@ -13,24 +14,34 @@ osqpSettings(
   eps_prim_inf = 1e-04,
   eps_dual_inf = 1e-04,
   alpha = 1.6,
-  linsys_solver = c(QDLDL_SOLVER = 0L),
+  linsys_solver = c(OSQP_DIRECT_SOLVER = 1L),
   delta = 1e-06,
-  polish = FALSE,
+  polishing = FALSE,
   polish_refine_iter = 3L,
   verbose = TRUE,
   scaled_termination = FALSE,
   check_termination = 25L,
-  warm_start = TRUE,
+  check_dualgap = TRUE,
+  warm_starting = TRUE,
   scaling = 10L,
   adaptive_rho = 1L,
-  adaptive_rho_interval = 0L,
+  adaptive_rho_interval = 50L,
   adaptive_rho_tolerance = 5,
   adaptive_rho_fraction = 0.4,
-  time_limit = 0
+  cg_max_iter = 20L,
+  cg_tol_reduction = 10L,
+  cg_tol_fraction = 0.15,
+  cg_precond = c(OSQP_DIAGONAL_PRECONDITIONER = 1L),
+  profiler_level = 0L,
+  time_limit = 1e+10,
+  polish = NULL,
+  warm_start = NULL
 )
 }
 \arguments{
 \item{rho}{ADMM step rho}
+
+\item{rho_is_vec}{boolean, whether rho is treated as a vector (per-constraint) or scalar}
 
 \item{sigma}{ADMM step sigma}
 
@@ -46,13 +57,13 @@ osqpSettings(
 
 \item{alpha}{relaxation parameter}
 
-\item{linsys_solver}{which linear systems solver to use, 0=QDLDL, 1=MKL Pardiso}
+\item{linsys_solver}{which linear systems solver to use, 1=OSQP_DIRECT_SOLVER (QDLDL), 2=OSQP_INDIRECT_SOLVER}
 
-\item{delta}{regularization parameter for polish}
+\item{delta}{regularization parameter for polishing}
 
-\item{polish}{boolean, polish ADMM solution}
+\item{polishing}{boolean, polish ADMM solution}
 
-\item{polish_refine_iter}{iterative refinement steps in polish}
+\item{polish_refine_iter}{iterative refinement steps in polishing}
 
 \item{verbose}{boolean, write out progress}
 
@@ -60,11 +71,13 @@ osqpSettings(
 
 \item{check_termination}{integer, check termination interval. If 0, termination checking is disabled}
 
-\item{warm_start}{boolean, warm start}
+\item{check_dualgap}{boolean, check duality gap termination criteria}
+
+\item{warm_starting}{boolean, warm start}
 
 \item{scaling}{heuristic data scaling iterations. If 0, scaling disabled}
 
-\item{adaptive_rho}{cboolean, is rho step size adaptive?}
+\item{adaptive_rho}{integer, rho adaptation strategy: 0=disabled, 1=iterations, 2=time, 3=KKT error}
 
 \item{adaptive_rho_interval}{Number of iterations between rho adaptations rho. If 0, it is automatic}
 
@@ -72,7 +85,21 @@ osqpSettings(
 
 \item{adaptive_rho_fraction}{Interval for adapting rho (fraction of the setup time)}
 
-\item{time_limit}{run time limit with 0 indicating no limit}
+\item{cg_max_iter}{maximum number of CG iterations (indirect solver only)}
+
+\item{cg_tol_reduction}{integer, number of consecutive zero CG iterations before the tolerance gets halved (indirect solver only)}
+
+\item{cg_tol_fraction}{CG tolerance fraction (indirect solver only)}
+
+\item{cg_precond}{preconditioner for CG method (indirect solver only): 0=none, 1=diagonal (Jacobi)}
+
+\item{profiler_level}{integer, level of detail for profiler annotations (0=off)}
+
+\item{time_limit}{run time limit in seconds (1e10 effectively disables)}
+
+\item{polish}{Deprecated. Use \code{polishing} instead.}
+
+\item{warm_start}{Deprecated. Use \code{warm_starting} instead.}
 }
 \description{
 For further details please consult the OSQP documentation:

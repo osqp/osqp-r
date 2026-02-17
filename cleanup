@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -rf src/include src/lib
+rm -f src/osqp_sources/include/private/osqp_configure.h
+rm -f src/osqp_sources/include/private/printing.h

@@ -1,0 +1,35 @@
+/* OSQP pkgdown theme overrides */
+
+/* Hero section on homepage */
+.page-header {
+  background-image: url('home_header.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Navbar styling */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Code blocks */
+pre {
+  border-left: 3px solid #1B2A4A;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #1B2A4A;
+}
+
+/* Links */
+a {
+  color: #2B5EA7;
+}
+
+a:hover {
+  color: #1B2A4A;
+}
