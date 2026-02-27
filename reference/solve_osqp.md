@@ -88,8 +88,8 @@ res <- solve_osqp(P, q, A, l, u, settings)
 #>           scaling: on (10 iterations), scaled_termination: off
 #>           warm starting: on, polishing: off, 
 #> iter   objective    prim res   dual res   gap        rel kkt    rho         time
-#>    1  -7.2491e+00   2.04e+01   3.59e+00  -3.73e+01   2.04e+01   1.00e-01    5.15e-05s
-#>  100   2.0002e+01   1.76e-03   1.47e-04   1.61e-03   1.76e-03   1.00e-01    8.63e-05s
+#>    1  -7.2491e+00   2.04e+01   3.59e+00  -3.73e+01   2.04e+01   1.00e-01    3.28e-05s
+#>  100   2.0002e+01   1.76e-03   1.47e-04   1.61e-03   1.76e-03   1.00e-01    6.71e-05s
 #> 
 #> status:               solved
 #> number of iterations: 100
@@ -97,7 +97,7 @@ res <- solve_osqp(P, q, A, l, u, settings)
 #> dual objective:       20.0007
 #> duality gap:          1.6060e-03
 #> primal-dual integral: 4.1060e+01
-#> run time:             1.02e-04s
+#> run time:             8.25e-05s
 #> optimal rho estimate: 1.78e-01
 #> 
 res$x
