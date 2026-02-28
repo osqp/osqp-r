@@ -52,20 +52,18 @@ osqpSettings = function(rho = 0.1, rho_is_vec = TRUE, sigma = 1e-06, max_iter = 
 
   ## Deprecated aliases: polish -> polishing, warm_start -> warm_starting
   if (!is.null(polish)) {
-    cli::cli_warn(
+    warning(cli::format_warning(
       c("!" = "The {.arg polish} argument is deprecated.",
-        "i" = "Use {.arg polishing} instead."),
-      .frequency = "regularly",
-      .frequency_id = "osqp_polish_deprecated"
+        "i" = "Use {.arg polishing} instead.")),
+      call. = FALSE
     )
     polishing <- polish
   }
   if (!is.null(warm_start)) {
-    cli::cli_warn(
+    warning(cli::format_warning(
       c("!" = "The {.arg warm_start} argument is deprecated.",
-        "i" = "Use {.arg warm_starting} instead."),
-      .frequency = "regularly",
-      .frequency_id = "osqp_warm_start_deprecated"
+        "i" = "Use {.arg warm_starting} instead.")),
+      call. = FALSE
     )
     warm_starting <- warm_start
   }

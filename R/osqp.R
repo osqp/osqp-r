@@ -27,11 +27,11 @@ OSQP_Model <- new_class("OSQP_Model",
         dims <- osqpGetDims(work)
         n <- dims[[1]]; m <- dims[[2]]
         if (!length(q) %in% c(0L, n))
-          cli::cli_abort("{.arg q} must have length {n} (number of variables), not {length(q)}.")
+          stop(cli::format_error("{.arg q} must have length {n} (number of variables), not {length(q)}."))
         if (!length(l) %in% c(0L, m))
-          cli::cli_abort("{.arg l} must have length {m} (number of constraints), not {length(l)}.")
+          stop(cli::format_error("{.arg l} must have length {m} (number of constraints), not {length(l)}."))
         if (!length(u) %in% c(0L, m))
-          cli::cli_abort("{.arg u} must have length {m} (number of constraints), not {length(u)}.")
+          stop(cli::format_error("{.arg u} must have length {m} (number of constraints), not {length(u)}."))
         osqpUpdate(work, q, l, u, Px, Px_idx, Ax, Ax_idx)
       }
     }),
@@ -42,9 +42,9 @@ OSQP_Model <- new_class("OSQP_Model",
         dims <- osqpGetDims(work)
         n <- dims[[1]]; m <- dims[[2]]
         if (!length(x) %in% c(0L, n))
-          cli::cli_abort("{.arg x} must have length {n} (number of variables), not {length(x)}.")
+          stop(cli::format_error("{.arg x} must have length {n} (number of variables), not {length(x)}."))
         if (!length(y) %in% c(0L, m))
-          cli::cli_abort("{.arg y} must have length {m} (number of constraints), not {length(y)}.")
+          stop(cli::format_error("{.arg y} must have length {m} (number of constraints), not {length(y)}."))
         osqpWarmStart(work, x, y)
       }
     }),
@@ -68,7 +68,7 @@ OSQP_Model <- new_class("OSQP_Model",
       work <- self@.work
       function(newpars = osqpSettings()) {
         if (!is.list(newpars))
-          cli::cli_abort("{.arg newpars} must be a list, not {.cls {class(newpars)}}.")
+          stop(cli::format_error("{.arg newpars} must be a list, not {.cls {class(newpars)}}."))
         for (i in seq_along(newpars))
           osqpUpdateSettings(work, newpars[[i]], names(newpars)[[i]])
       }
@@ -154,14 +154,14 @@ OSQP_Model <- new_class("OSQP_Model",
 osqp <- function(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL, pars = osqpSettings()) {
 
   if (is.null(P) && is.null(q))
-    cli::cli_abort("At least one of {.arg P} and {.arg q} must be supplied.")
+    stop(cli::format_error("At least one of {.arg P} and {.arg q} must be supplied."))
 
   if (is.null(P))
     n <- length(q)
   else {
     dimP <- dim(P)
     n <- dimP[1L]
-    if (dimP[2L] != n) cli::cli_abort("{.arg P} must be a square matrix, got {dimP[1L]} x {dimP[2L]}.")
+    if (dimP[2L] != n) stop(cli::format_error("{.arg P} must be a square matrix, got {dimP[1L]} x {dimP[2L]}."))
   }
 
   if (is.null(P)) {
@@ -194,15 +194,15 @@ osqp <- function(P = NULL, q = NULL, A = NULL, l = NULL, u = NULL, pars = osqpSe
   }
 
   if (length(q) != n)
-    cli::cli_abort("{.arg q} must have length {n}, not {length(q)}.")
+    stop(cli::format_error("{.arg q} must have length {n}, not {length(q)}."))
   if (!identical(dim(A), c(m, n)))
-    cli::cli_abort("{.arg A} must be {m} x {n}, got {nrow(A)} x {ncol(A)}.")
+    stop(cli::format_error("{.arg A} must be {m} x {n}, got {nrow(A)} x {ncol(A)}."))
   if (length(l) != m)
-    cli::cli_abort("{.arg l} must have length {m}, not {length(l)}.")
+    stop(cli::format_error("{.arg l} must have length {m}, not {length(l)}."))
   if (length(u) != m)
-    cli::cli_abort("{.arg u} must have length {m}, not {length(u)}.")
+    stop(cli::format_error("{.arg u} must have length {m}, not {length(u)}."))
   if (any(l > u))
-    cli::cli_abort("Lower bounds {.arg l} must not exceed upper bounds {.arg u}.")
+    stop(cli::format_error("Lower bounds {.arg l} must not exceed upper bounds {.arg u}."))
 
   work <- osqpSetup(P, q, A, l, u, pars)
   OSQP_Model(work)
@@ -236,11 +236,10 @@ print.OSQP_Model <- function(x, ...) {
 #' @export
 `$.OSQP_Model` <- function(x, name) {
   if (name %in% .osqp_methods) {
-    cli::cli_warn(
+    warning(cli::format_warning(
       c("!" = "Using {.code model${name}()} is deprecated for {.cls OSQP_Model} objects.",
-        "i" = "Use {.code model@{name}()} instead."),
-      .frequency = "regularly",
-      .frequency_id = paste0("osqp_dollar_", name)
+        "i" = "Use {.code model@{name}()} instead.")),
+      call. = FALSE
     )
     return(prop(x, name))
   }
